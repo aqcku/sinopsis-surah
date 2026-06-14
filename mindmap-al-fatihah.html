@@ -1,0 +1,877 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Mind Map — Surah Al-Fatihah | Tafsir Ibn Kathir</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap');
+
+  :root {
+    --gold: #C9963E;
+    --gold-soft: rgba(201,150,62,0.12);
+    --gold-border: rgba(201,150,62,0.35);
+
+    --blue: #5EC4D6;
+    --blue-soft: rgba(94,196,214,0.12);
+    --blue-border: rgba(94,196,214,0.35);
+
+    --green: #7FBF8F;
+    --green-soft: rgba(127,191,143,0.12);
+    --green-border: rgba(127,191,143,0.35);
+
+    --purple: #B399D4;
+    --purple-soft: rgba(179,153,212,0.12);
+    --purple-border: rgba(179,153,212,0.35);
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    min-height: 100vh;
+    background: radial-gradient(ellipse at top, #0F2530 0%, #060F12 60%, #050a08 100%);
+    font-family: 'Inter', system-ui, sans-serif;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    padding: 40px 16px 60px;
+  }
+
+  .wrap { max-width: 760px; width: 100%; }
+
+  /* ── Header background image ── */
+  .header {
+    position: relative;
+    border-radius: 20px;
+    overflow: hidden;
+    padding: 36px 16px;
+    text-align: center;
+    margin-bottom: 32px;
+  }
+
+  .header-bg {
+    position: absolute;
+    inset: 0;
+    background-image: url('img/01_bg.jpg');
+    background-size: cover;
+    background-position: center 30%;
+    opacity: 0.28;
+    z-index: 0;
+  }
+
+  .header::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(ellipse at center, rgba(15,37,48,0.4) 0%, rgba(6,15,18,0.85) 100%);
+    z-index: 0;
+  }
+
+  .header > * {
+    position: relative;
+    z-index: 1;
+  }
+
+  .eyebrow {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.3em;
+    text-transform: uppercase;
+    color: var(--gold);
+    margin-bottom: 16px;
+  }
+
+  .arabic-title {
+    font-family: 'Playfair Display', serif;
+    font-size: 48px;
+    color: #E8B96A;
+    margin-bottom: 12px;
+    direction: rtl;
+    line-height: 1.2;
+  }
+
+  h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    font-weight: 700;
+    color: #fff;
+    margin-bottom: 8px;
+  }
+
+  .cta-tagline {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: var(--gold);
+    direction: rtl;
+    margin: 8px 0 6px;
+  }
+
+  .cta-tagline span {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    font-weight: 300;
+    color: rgba(245,237,214,0.5);
+    direction: ltr;
+    letter-spacing: 0.05em;
+  }
+
+  .desc {
+    font-size: 14px;
+    color: rgba(214,211,209,0.6);
+    font-weight: 300;
+    max-width: 420px;
+    margin: 0 auto;
+    line-height: 1.6;
+  }
+
+  /* ── Legend ── */
+  .legend {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 28px;
+  }
+
+  .legend-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 7px 14px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 500;
+  }
+
+  .legend-dot {
+    width: 8px; height: 8px;
+    border-radius: 50%;
+  }
+
+  .legend-item {
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 1px solid transparent;
+    background: rgba(255,255,255,0.03);
+    color: rgba(255,255,255,0.55);
+  }
+  .legend-item:hover {
+    background: rgba(255,255,255,0.07);
+    color: rgba(255,255,255,0.85);
+  }
+
+  .legend-item .legend-dot { opacity: 0.55; transition: opacity 0.2s; }
+  .legend-item:hover .legend-dot,
+  .legend-item.active .legend-dot { opacity: 1; }
+
+  .legend-allah.active  { background: var(--gold-soft);  border-color: var(--gold-border);  color: var(--gold); }
+  .legend-shared.active { background: var(--blue-soft);  border-color: var(--blue-border);  color: var(--blue); }
+  .legend-hamba.active  { background: var(--green-soft); border-color: var(--green-border); color: var(--green); }
+
+  .legend-allah  .legend-dot { background: var(--gold); }
+  .legend-shared .legend-dot { background: var(--blue); }
+  .legend-hamba  .legend-dot { background: var(--green); }
+  .legend-ibrah  .legend-dot { background: var(--purple); }
+  .legend-ibrah.active { background: var(--purple-soft); border-color: var(--purple-border); color: var(--purple); }
+
+  /* Dim nodes not in active filter */
+  .node.dimmed {
+    opacity: 0.28;
+    filter: saturate(0.5);
+  }
+  .node { transition: opacity 0.35s, filter 0.35s, border-color 0.3s, background 0.3s; }
+
+  /* ── Per-node background image ── */
+  .node {
+    position: relative;
+    isolation: isolate;
+  }
+
+  .node-bg {
+    position: absolute;
+    inset: 0;
+    background-size: cover;
+    background-position: center;
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    z-index: 0;
+    border-radius: inherit;
+  }
+
+  .node.open .node-bg {
+    opacity: 0.22;
+  }
+
+  .node-header, .node-body {
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Darken overlay on top of bg image for text readability */
+  .node.open::before {
+    content: '';
+    position: absolute;
+    inset: 0;
+    background: linear-gradient(180deg, rgba(6,15,18,0.55) 0%, rgba(6,15,18,0.85) 100%);
+    z-index: 0;
+    border-radius: inherit;
+    pointer-events: none;
+  }
+
+  .toggle-all {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 7px 14px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 500;
+    border: 1px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.65);
+    background: rgba(255,255,255,0.03);
+    cursor: pointer;
+    transition: all 0.2s;
+    margin-left: 4px;
+  }
+  .toggle-all:hover {
+    background: rgba(255,255,255,0.08);
+    color: #fff;
+  }
+
+  /* ── Ayat node ── */
+  .node-list { display: flex; flex-direction: column; gap: 12px; }
+
+  .node {
+    border-radius: 14px;
+    border: 1px solid rgba(255,255,255,0.08);
+    background: rgba(15,26,30,0.4);
+    transition: border-color 0.3s, background 0.3s;
+    overflow: hidden;
+  }
+
+  .node.open.theme-allah  { border-color: var(--gold);  background: linear-gradient(135deg, var(--gold-soft), rgba(15,26,30,0.6)); }
+  .node.open.theme-shared { border-color: var(--blue);  background: linear-gradient(135deg, var(--blue-soft), rgba(15,26,30,0.6)); }
+  .node.open.theme-hamba  { border-color: var(--green); background: linear-gradient(135deg, var(--green-soft), rgba(15,26,30,0.6)); }
+
+  .node-header {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    padding: 18px 20px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    text-align: left;
+    font-family: inherit;
+    color: inherit;
+  }
+
+  .badge {
+    flex-shrink: 0;
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Playfair Display', serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: #0B1A1F;
+    transition: transform 0.3s;
+  }
+
+  .theme-allah  .badge { background: linear-gradient(135deg, var(--gold), #8a5a10aa); }
+  .theme-shared .badge { background: linear-gradient(135deg, var(--blue), #1c6e7baa); }
+  .theme-hamba  .badge { background: linear-gradient(135deg, var(--green), #2f6e3eaa); }
+
+  .node.open .badge { transform: scale(1.08); }
+
+  .node-titles { flex: 1; min-width: 0; }
+
+  .node-arabic {
+    font-family: 'Playfair Display', serif;
+    font-size: 19px;
+    line-height: 1.5;
+    margin-bottom: 4px;
+    direction: rtl;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .theme-allah  .node-arabic { color: var(--gold); }
+  .theme-shared .node-arabic { color: var(--blue); }
+  .theme-hamba  .node-arabic { color: var(--green); }
+  .theme-ibrah  .node-arabic { color: var(--purple); }
+
+  .theme-ibrah  .badge { background: linear-gradient(135deg, var(--purple), #6a4a9aaa); }
+  .node.open.theme-ibrah  { border-color: var(--purple); background: linear-gradient(135deg, var(--purple-soft), rgba(15,26,30,0.6)); }
+  .theme-ibrah.open  .chevron { background: var(--purple-soft); color: var(--purple); }
+  .theme-ibrah  .divider { background: linear-gradient(90deg, var(--purple)55, transparent); }
+  .theme-ibrah  .point-marker { background: var(--purple); }
+  .theme-ibrah  .kathir-box { border-color: var(--purple); }
+  .theme-ibrah  .kathir-label { color: var(--purple); }
+
+  .node-malay {
+    font-size: 12.5px;
+    color: rgba(214,211,209,0.6);
+    font-weight: 300;
+    font-style: italic;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .chevron {
+    flex-shrink: 0;
+    width: 32px; height: 32px;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255,255,255,0.04);
+    color: rgba(255,255,255,0.4);
+    transition: all 0.3s;
+    font-size: 14px;
+  }
+
+  .node.open .chevron {
+    transform: rotate(90deg);
+  }
+  .theme-allah.open  .chevron { background: var(--gold-soft);  color: var(--gold); }
+  .theme-shared.open .chevron { background: var(--blue-soft);  color: var(--blue); }
+  .theme-hamba.open  .chevron { background: var(--green-soft); color: var(--green); }
+
+  /* ── Expandable body ── */
+  .node-body {
+    max-height: 0;
+    opacity: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease, opacity 0.3s ease;
+  }
+
+  .node.open .node-body {
+    max-height: 800px;
+    opacity: 1;
+  }
+
+  .node-body-inner {
+    padding: 0 22px 22px;
+  }
+
+  .divider {
+    height: 1px;
+    margin-bottom: 16px;
+  }
+  .theme-allah  .divider { background: linear-gradient(90deg, var(--gold)55, transparent); }
+  .theme-shared .divider { background: linear-gradient(90deg, var(--blue)55, transparent); }
+  .theme-hamba  .divider { background: linear-gradient(90deg, var(--green)55, transparent); }
+
+  .points { list-style: none; margin-bottom: 16px; }
+
+  .points li {
+    display: flex;
+    gap: 12px;
+    font-size: 13.5px;
+    color: rgba(255,255,255,0.85);
+    line-height: 1.65;
+    margin-bottom: 10px;
+    font-weight: 300;
+  }
+
+  .point-marker {
+    flex-shrink: 0;
+    margin-top: 6px;
+    width: 6px; height: 6px;
+    transform: rotate(45deg);
+  }
+  .theme-allah  .point-marker { background: var(--gold); }
+  .theme-shared .point-marker { background: var(--blue); }
+  .theme-hamba  .point-marker { background: var(--green); }
+
+  .kathir-box {
+    border-radius: 10px;
+    padding: 14px 16px;
+    border-left: 2px solid;
+    background: rgba(0,0,0,0.2);
+    font-size: 13px;
+    line-height: 1.65;
+    color: rgba(214,211,209,0.8);
+    font-weight: 300;
+  }
+
+  .theme-allah  .kathir-box { border-color: var(--gold); }
+  .theme-shared .kathir-box { border-color: var(--blue); }
+  .theme-hamba  .kathir-box { border-color: var(--green); }
+
+  .kathir-label {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 10px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.15em;
+    margin-bottom: 6px;
+  }
+  .theme-allah  .kathir-label { color: var(--gold); }
+
+  /* ── Audio play button ── */
+  .audio-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-top: 14px;
+    padding-top: 14px;
+    border-top: 1px solid rgba(255,255,255,0.06);
+  }
+
+  .play-btn {
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 8px;
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+    transition: all 0.25s;
+    color: #0B1A1F;
+  }
+
+  .theme-allah  .play-btn { background: linear-gradient(135deg, var(--gold), #8a5a10aa); }
+  .theme-shared .play-btn { background: linear-gradient(135deg, var(--blue), #1c6e7baa); }
+  .theme-hamba  .play-btn { background: linear-gradient(135deg, var(--green), #2f6e3eaa); }
+  .theme-ibrah  .play-btn { background: linear-gradient(135deg, var(--purple), #6a4a9aaa); }
+
+  .play-btn:hover { transform: scale(1.08); }
+  .play-btn.playing { animation: pulse-ring 1.4s ease-out infinite; }
+
+  @keyframes pulse-ring {
+    0%   { box-shadow: 0 0 0 0 rgba(255,255,255,0.4); }
+    70%  { box-shadow: 0 0 0 8px rgba(255,255,255,0); }
+    100% { box-shadow: 0 0 0 0 rgba(255,255,255,0); }
+  }
+
+  .audio-label {
+    font-size: 11.5px;
+    color: rgba(255,255,255,0.5);
+    font-weight: 300;
+  }
+
+  .audio-label strong {
+    color: rgba(255,255,255,0.8);
+    font-weight: 500;
+  }
+
+  .audio-progress {
+    flex: 1;
+    height: 3px;
+    border-radius: 2px;
+    background: rgba(255,255,255,0.08);
+    overflow: hidden;
+    position: relative;
+  }
+
+  .audio-progress-fill {
+    height: 100%;
+    width: 0%;
+    border-radius: 2px;
+    transition: width 0.1s linear;
+  }
+  .theme-allah  .audio-progress-fill { background: var(--gold); }
+  .theme-shared .audio-progress-fill { background: var(--blue); }
+  .theme-hamba  .audio-progress-fill { background: var(--green); }
+  .theme-ibrah  .audio-progress-fill { background: var(--purple); }
+  .theme-shared .kathir-label { color: var(--blue); }
+  .theme-hamba  .kathir-label { color: var(--green); }
+
+  /* ── Footer ── */
+  .footer {
+    margin-top: 40px;
+    padding-top: 24px;
+    border-top: 1px solid rgba(255,255,255,0.05);
+    text-align: center;
+  }
+  .footer p {
+    font-size: 11px;
+    color: rgba(255,255,255,0.4);
+    font-weight: 300;
+    line-height: 1.7;
+  }
+  .footer .source { color: var(--gold); }
+
+  @media (max-width: 480px) {
+    .arabic-title { font-size: 36px; }
+    h1 { font-size: 22px; }
+    .node-arabic { font-size: 16px; }
+    .badge { width: 38px; height: 38px; font-size: 15px; }
+    .node-header { padding: 14px 14px; gap: 12px; }
+    .node-body-inner { padding: 0 16px 18px; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <!-- Header -->
+  <div class="header">
+    <div class="header-bg"></div>
+    <div class="eyebrow">Sinopsis Surah · Mind Map Interaktif</div>
+    <div class="arabic-title">سورة الفاتحة</div>
+    <h1>Surah Al-Fatihah</h1>
+    <div class="cta-tagline">اقْرَأْ بِحُبٍّ <span>· Bacalah dengan Cinta</span></div>
+    <p class="desc">Klik setiap ayat untuk membuka tafsir Ibn Kathir — poin ringkas dan rujukan hadis</p>
+  </div>
+
+  <!-- Legend / Filter buttons -->
+  <div class="legend">
+    <div class="legend-item legend-allah" data-filter="allah"><span class="legend-dot"></span>Hak Allah</div>
+    <div class="legend-item legend-shared" data-filter="shared"><span class="legend-dot"></span>Perkongsian</div>
+    <div class="legend-item legend-hamba" data-filter="hamba"><span class="legend-dot"></span>Hak Hamba</div>
+    <div class="legend-item legend-ibrah" data-filter="ibrah"><span class="legend-dot"></span>Ibrah</div>
+    <div class="toggle-all" id="toggleAllBtn">📖 Buka Semua</div>
+  </div>
+
+  <!-- Nodes -->
+  <div class="node-list" id="nodeList"></div>
+
+  <!-- Footer -->
+  <div class="footer">
+    <p>
+      Tafsir Ibn Kathir (Abridged), 10 Jilid · Darussalam Publishers<br>
+      Ed. Safiur-Rahman al-Mubarakpuri · <span class="source">archive.org/details/IbnKathir_Tafseer</span>
+    </p>
+  </div>
+
+</div>
+
+<script>
+const AYAT_DATA = [
+  {
+    no: 1,
+    arabic: "بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ",
+    malay: "Dengan nama Allah Yang Maha Pemurah lagi Maha Penyayang",
+    group: "allah",
+    audio: "https://everyayah.com/data/Alafasy_64kbps/001001.mp3",
+    bg: "img/03_bg.jpg",
+    points: [
+      "Majoriti qurra' Al-Kufah, Sahabat & Tabiin: Bismillah adalah ayat berdiri sendiri pada awal Al-Fatihah.",
+      "Al-Fatihah dibahagi antara Allah dan hamba-Nya — hamba memperoleh apa yang dipohonnya.",
+      "Tiada solat yang sah tanpa membaca Umm Al-Qur'an — disepakati para ulama."
+    ],
+    kathir: "Rasulullah ﷺ bersabda: 'Sesiapa yang bersolat tanpa membaca Umm Al-Qur'an, solatnya tidak sempurna.' (Muslim — diulang tiga kali)."
+  },
+  {
+    no: 2,
+    arabic: "الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ",
+    malay: "Segala puji bagi Allah, Tuhan sekalian alam",
+    group: "allah",
+    audio: "https://everyayah.com/data/Alafasy_64kbps/001002.mp3",
+    bg: "img/04_bg.jpg",
+    points: [
+      "Apabila hamba mengucapkan ayat ini, Allah berfirman: 'Hamba-Ku telah memuji-Ku.'",
+      "Tiga ayat pertama Al-Fatihah adalah hak Allah — pujian, pengagungan & penyerahan urusan kepada-Nya.",
+      "Ibn Jarir: Al-Fatihah dinamakan Umm kerana menghimpunkan makna keseluruhan al-Quran."
+    ],
+    kathir: "Allah membahagikan Al-Fatihah dua bahagian — setengah untuk-Nya (pujian) dan setengah untuk hamba (permohonan). Hamba-Nya akan memperoleh apa yang dipohon."
+  },
+  {
+    no: 3,
+    arabic: "الرَّحْمَٰنِ الرَّحِيمِ",
+    malay: "Yang Maha Pemurah lagi Maha Penyayang",
+    group: "allah",
+    audio: "https://everyayah.com/data/Alafasy_64kbps/001003.mp3",
+    bg: "img/05_bg.jpg",
+    points: [
+      "Apabila hamba mengucapkan ayat ini, Allah berfirman: 'Hamba-Ku telah mengagungkan-Ku.'",
+      "Penyebutan sifat rahmat Allah selepas pujian — hubungan Allah & hamba berpaksi pada rahmat & keagungan.",
+      "Allah meraikan setiap ucapan hamba yang memuji dan mengagungkan-Nya."
+    ],
+    kathir: "Ayat ini termasuk tiga ayat pertama Al-Fatihah — hak Allah sepenuhnya: pujian, pengagungan & penyerahan semua urusan kepada-Nya."
+  },
+  {
+    no: 4,
+    arabic: "مَالِكِ يَوْمِ الدِّينِ",
+    malay: "Yang menguasai hari pembalasan",
+    group: "allah",
+    audio: "https://everyayah.com/data/Alafasy_64kbps/001004.mp3",
+    bg: "img/06_bg.jpg",
+    points: [
+      "Allah berfirman: 'Hamba-Ku telah mengagungkan-Ku' atau 'Hamba-Ku telah menyerahkan segala urusan kepada-Ku.'",
+      "Yawmud-Din: hari di mana hanya Allah yang memiliki segala kuasa & keputusan — tiada siapa lain.",
+      "Ayat ini termasuk bahagian hak Allah — penyerahan mutlak urusan kepada-Nya."
+    ],
+    kathir: "Hadis Qudsi (Muslim & An-Nasa'i): 'Setengah Al-Fatihah untuk-Ku dan setengah untuk hamba-Ku, dan hamba-Ku akan memperoleh apa yang dipohonnya.'"
+  },
+  {
+    no: 5,
+    arabic: "إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ",
+    malay: "Hanya kepada-Mu kami menyembah & hanya kepada-Mu kami memohon pertolongan",
+    group: "shared",
+    audio: "https://everyayah.com/data/Alafasy_64kbps/001005.mp3",
+    bg: "img/07_bg.jpg",
+    points: [
+      "Allah berfirman: 'Ini antara Aku dan hamba-Ku, dan dia akan memperoleh apa yang dipohonnya.'",
+      "Ayat tengah Al-Fatihah — perkongsian Allah & hamba; ibadah & permohonan pertolongan bersatu.",
+      "Hanya kepada Allah ibadah ditujukan & hanya kepada-Nya pertolongan dipohon."
+    ],
+    kathir: "Hadis Qudsi (Muslim): 'Aku bahagikan Al-Fatihah dua bahagian — setengah untuk-Ku, setengah untuk hamba-Ku, dan dia akan mendapat apa yang dipohon.'"
+  },
+  {
+    no: 6,
+    arabic: "اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ",
+    malay: "Tunjukilah kami jalan yang lurus",
+    group: "hamba",
+    audio: "https://everyayah.com/data/Alafasy_64kbps/001006.mp3",
+    bg: "img/08_bg.jpg",
+    points: [
+      "Allah berfirman: 'Ini untuk hamba-Ku, dan dia akan memperoleh apa yang dipohonnya.'",
+      "Ayat-ayat akhir Al-Fatihah adalah hak hamba sepenuhnya — permohonan petunjuk ke jalan lurus.",
+      "Muslim & An-Nasa'i: doa petunjuk ini pasti dikabulkan Allah."
+    ],
+    kathir: "Rasulullah ﷺ: Al-Fatihah adalah surah tiada tandingannya dalam Taurat, Injil, Zabur & al-Quran — 'tujuh ayat yang diulang' yang diberikan kepada baginda ﷺ."
+  },
+  {
+    no: 7,
+    arabic: "صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ",
+    malay: "Jalan mereka yang dikurniakan nikmat, bukan yang dimurkai & bukan yang sesat",
+    group: "hamba",
+    audio: "https://everyayah.com/data/Alafasy_64kbps/001007.mp3",
+    bg: "img/09_bg.jpg",
+    points: [
+      "Golongan dikurniakan nikmat: para nabi, siddiqin, syuhada' & solihin — contoh ikutan terbaik.",
+      "Maghdub 'alaihim (dimurkai): golongan yang mengetahui kebenaran tetapi meninggalkannya.",
+      "Ad-Dallin (sesat): golongan yang beramal tanpa ilmu.",
+      "Doa ini hak hamba — Allah menjanjikan ia pasti dikabulkan."
+    ],
+    kathir: "Jibril memberitahu Nabi ﷺ: 'Dua cahaya diberikan kepadamu — Al-Fatihah & ayat akhir Al-Baqarah. Setiap huruf yang dibaca membawa manfaatnya.' (Muslim & An-Nasa'i)."
+  }
+];
+
+const IBRAH_DATA = {
+  no: "✦",
+  arabic: "الفهم والعبرة",
+  malay: "Penghayatan & Ibrah — Surah Al-Fatihah Ayat 1 hingga 7",
+  group: "ibrah",
+  bg: "img/10_bg.jpg",
+  points: [
+    "Dialog Langsung Hamba & Allah — Hadis Qudsi (Muslim): Allah berfirman ayat demi ayat, 'Hamba-Ku memuji-Ku... mengagungkan-Ku...' Setiap rakaat adalah pertemuan langsung dengan Allah.",
+    "Surah Tiada Tandingan — Nabi ﷺ bersumpah: 'Allah tidak pernah menurunkan dalam Taurat, Injil, Zabur atau Furqan sebuah surah yang menyamainya.' (Imam Ahmad — Hasan Sahih).",
+    "Cahaya Istimewa Umat Muhammad ﷺ — Jibril: 'Dua cahaya diberikan kepadamu — Al-Fatihah & ayat akhir Al-Baqarah. Setiap huruf yang dibaca membawa manfaatnya.' (Muslim & An-Nasa'i).",
+    "Solat Tidak Sah Tanpanya — 'Tiada solat bagi sesiapa yang tidak membaca Pembuka Kitab.' (Bukhari & Muslim). Al-Fatihah adalah tiang solat yang paling utama.",
+    "Penawar & Ubat — Al-Bukhari: Sahabat sembuhkan ketua suku diracun dengan Al-Fatihah sebagai ruqyah. Rasulullah ﷺ membenarkan & meminta bahagian hadiah."
+  ],
+  kathir: "Surah ini ditutup dengan 'Amin' — bermaksud 'Ya Allah, perkenankanlah.' Malaikat turut mengaminkan doa ini, dan sesiapa yang aminnya bertepatan dengan amin para malaikat, akan diampunkan dosanya yang lalu."
+};
+
+const nodeList = document.getElementById('nodeList');
+let openSet = new Set([1]); // Ayat 1 open by default
+let allOpen = false;
+let activeFilter = null; // null = show all, or 'allah' | 'shared' | 'hamba' | 'ibrah'
+
+// Audio playback state
+let currentAudio = null;
+let currentAudioKey = null;
+let currentBtn = null;
+let currentFill = null;
+
+function buildNodeHTML(ayat, isOpen, isDimmed) {
+  const pointsHtml = ayat.points.map(p =>
+    `<li><span class="point-marker"></span><span>${p}</span></li>`
+  ).join('');
+
+  const audioHtml = ayat.audio ? `
+        <div class="audio-row">
+          <button class="play-btn" data-audio="${ayat.audio}" data-key="${ayat.no}">▶</button>
+          <div class="audio-progress"><div class="audio-progress-fill"></div></div>
+          <span class="audio-label">Bacaan <strong>Sheikh Mishary Alafasy</strong></span>
+        </div>` : '';
+
+  const div = document.createElement('div');
+  div.className = `node theme-${ayat.group}` + (isOpen ? ' open' : '') + (isDimmed ? ' dimmed' : '');
+
+  const bgHtml = ayat.bg ? `<div class="node-bg" style="background-image:url('${ayat.bg}')"></div>` : '';
+
+  div.innerHTML = `
+    ${bgHtml}
+    <button class="node-header" data-no="${ayat.no}">
+      <div class="badge">${ayat.no}</div>
+      <div class="node-titles">
+        <div class="node-arabic">${ayat.arabic}</div>
+        <div class="node-malay">${ayat.malay}</div>
+      </div>
+      <div class="chevron">▸</div>
+    </button>
+    <div class="node-body">
+      <div class="node-body-inner">
+        <div class="divider"></div>
+        <ul class="points">${pointsHtml}</ul>
+        <div class="kathir-box">
+          <div class="kathir-label">✦ Ibn Kathīr</div>
+          ${ayat.kathir}
+        </div>${audioHtml}
+      </div>
+    </div>
+  `;
+  return div;
+}
+
+function render() {
+  // Stop any playing audio before re-rendering (DOM nodes will be replaced)
+  if (currentAudio) {
+    currentAudio.pause();
+    currentAudio = null;
+    currentAudioKey = null;
+    currentBtn = null;
+    currentFill = null;
+  }
+
+  nodeList.innerHTML = '';
+
+  // Ayat nodes
+  AYAT_DATA.forEach(ayat => {
+    const isOpen = openSet.has(ayat.no);
+    const isDimmed = activeFilter !== null && activeFilter !== 'ibrah' && ayat.group !== activeFilter;
+    const node = buildNodeHTML(ayat, isOpen, isDimmed);
+    nodeList.appendChild(node);
+  });
+
+  // Ibrah node — always last
+  const ibrahOpen = openSet.has('ibrah');
+  const ibrahDimmed = activeFilter !== null && activeFilter !== 'ibrah';
+  const ibrahNode = buildNodeHTML(IBRAH_DATA, ibrahOpen, ibrahDimmed);
+  nodeList.appendChild(ibrahNode);
+
+  // Attach click handlers
+  document.querySelectorAll('.node-header').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const no = btn.dataset.no;
+      const key = no === '✦' ? 'ibrah' : parseInt(no);
+      if (openSet.has(key)) openSet.delete(key);
+      else openSet.add(key);
+      render();
+    });
+  });
+
+  // Attach audio play button handlers
+  document.querySelectorAll('.play-btn').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const url = btn.dataset.audio;
+      const key = btn.dataset.key;
+      const fill = btn.parentElement.querySelector('.audio-progress-fill');
+
+      // If this button's audio is currently playing -> pause it
+      if (currentAudio && currentAudioKey === key && !currentAudio.paused) {
+        currentAudio.pause();
+        btn.textContent = '▶';
+        btn.classList.remove('playing');
+        return;
+      }
+
+      // Stop any other playing audio
+      if (currentAudio) {
+        currentAudio.pause();
+        currentAudio.currentTime = 0;
+        if (currentBtn) {
+          currentBtn.textContent = '▶';
+          currentBtn.classList.remove('playing');
+        }
+        if (currentFill) currentFill.style.width = '0%';
+      }
+
+      // Play this audio
+      const audio = new Audio(url);
+      currentAudio = audio;
+      currentAudioKey = key;
+      currentBtn = btn;
+      currentFill = fill;
+
+      btn.textContent = '❙❙';
+      btn.classList.add('playing');
+
+      audio.addEventListener('timeupdate', () => {
+        if (audio.duration) {
+          fill.style.width = (audio.currentTime / audio.duration * 100) + '%';
+        }
+      });
+
+      audio.addEventListener('ended', () => {
+        btn.textContent = '▶';
+        btn.classList.remove('playing');
+        fill.style.width = '0%';
+        currentAudio = null;
+      });
+
+      audio.addEventListener('error', () => {
+        btn.textContent = '⚠';
+        btn.classList.remove('playing');
+        console.error('Audio failed to load:', url);
+      });
+
+      audio.play().catch(err => {
+        btn.textContent = '⚠';
+        console.error('Playback error:', err);
+      });
+    });
+  });
+}
+
+// Toggle all
+document.getElementById('toggleAllBtn').addEventListener('click', () => {
+  allOpen = !allOpen;
+  if (allOpen) {
+    openSet = new Set([...AYAT_DATA.map(a => a.no), 'ibrah']);
+    document.getElementById('toggleAllBtn').textContent = '📕 Tutup Semua';
+  } else {
+    openSet = new Set();
+    document.getElementById('toggleAllBtn').textContent = '📖 Buka Semua';
+  }
+  render();
+});
+
+// Filter buttons — click to highlight group, click again to clear
+document.querySelectorAll('.legend-item[data-filter]').forEach(btn => {
+  btn.addEventListener('click', () => {
+    const filter = btn.dataset.filter;
+
+    if (activeFilter === filter) {
+      // Toggle off — clear filter
+      activeFilter = null;
+      document.querySelectorAll('.legend-item[data-filter]').forEach(b => b.classList.remove('active'));
+    } else {
+      // Set new filter
+      activeFilter = filter;
+      document.querySelectorAll('.legend-item[data-filter]').forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+
+      // Auto-open matching nodes, close others
+      if (filter === 'ibrah') {
+        openSet = new Set(['ibrah']);
+      } else {
+        openSet = new Set(AYAT_DATA.filter(a => a.group === filter).map(a => a.no));
+      }
+      allOpen = false;
+      document.getElementById('toggleAllBtn').textContent = '📖 Buka Semua';
+    }
+    render();
+
+    // Smooth scroll to first matching node
+    if (activeFilter) {
+      setTimeout(() => {
+        const firstOpen = document.querySelector('.node.open');
+        if (firstOpen) firstOpen.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }, 100);
+    }
+  });
+});
+
+render();
+</script>
+</body>
+</html>

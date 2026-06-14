@@ -1,0 +1,512 @@
+<!DOCTYPE html>
+<html lang="ms">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AQCKU — Al-Quran CintaKU | Sinopsis Surah-Surah Al-Quran</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=Inter:wght@300;400;500;600;700&display=swap');
+
+  :root {
+    --gold: #C9963E;
+    --gold-light: #E8B96A;
+    --gold-pale: #F5DDA0;
+    --cream: #F5EDD6;
+    --bg-1: #0F2530;
+    --bg-2: #060F12;
+    --bg-3: #050a08;
+  }
+
+  * { margin:0; padding:0; box-sizing:border-box; }
+  html { scroll-behavior: smooth; }
+
+  body {
+    min-height: 100vh;
+    background: radial-gradient(ellipse at top, var(--bg-1) 0%, var(--bg-2) 60%, var(--bg-3) 100%);
+    font-family: 'Inter', system-ui, sans-serif;
+    color: #fff;
+  }
+
+  .wrap { max-width: 880px; margin: 0 auto; padding: 0 16px; }
+
+  /* ══ HERO ══ */
+  .hero { text-align: center; padding: 56px 16px 40px; }
+
+  .logo {
+    width: 140px;
+    height: 140px;
+    border-radius: 24px;
+    margin: 0 auto 20px;
+    display: block;
+    box-shadow: 0 0 50px rgba(201,150,62,0.25);
+  }
+
+  .arabic-tagline {
+    font-family: 'Playfair Display', serif;
+    font-size: 28px;
+    color: var(--gold-light);
+    direction: rtl;
+    margin-bottom: 10px;
+    line-height: 1.4;
+  }
+
+  .hero-tagline {
+    font-family: 'Playfair Display', serif;
+    font-size: 16px;
+    font-style: italic;
+    color: rgba(245,237,214,0.75);
+    margin-bottom: 6px;
+  }
+
+  .hero-sub {
+    font-size: 13px;
+    color: rgba(245,237,214,0.45);
+    font-weight: 300;
+    letter-spacing: 0.05em;
+    max-width: 480px;
+    margin: 0 auto;
+    line-height: 1.7;
+  }
+
+  /* ══ STATS BAR ══ */
+  .stats-bar {
+    display: flex;
+    margin: 32px auto 0;
+    max-width: 520px;
+    border: 1px solid rgba(201,150,62,0.2);
+    border-radius: 14px;
+    overflow: hidden;
+    background: rgba(255,255,255,0.02);
+  }
+
+  .stat {
+    flex: 1;
+    text-align: center;
+    padding: 16px 8px;
+    border-right: 1px solid rgba(201,150,62,0.15);
+  }
+  .stat:last-child { border-right: none; }
+
+  .stat-num {
+    font-family: 'Playfair Display', serif;
+    font-size: 24px;
+    font-weight: 900;
+    color: var(--gold);
+    display: block;
+  }
+
+  .stat-label {
+    font-size: 10px;
+    color: rgba(245,237,214,0.5);
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    margin-top: 3px;
+  }
+
+  /* ══ SEARCH ══ */
+  .search-section { padding: 36px 16px 24px; text-align: center; }
+
+  .search-box {
+    position: relative;
+    max-width: 420px;
+    margin: 0 auto;
+  }
+
+  .search-input {
+    width: 100%;
+    padding: 14px 20px 14px 46px;
+    border-radius: 999px;
+    border: 1px solid rgba(201,150,62,0.25);
+    background: rgba(255,255,255,0.04);
+    color: #fff;
+    font-size: 14px;
+    font-family: 'Inter', sans-serif;
+    outline: none;
+    transition: border-color 0.2s, background 0.2s;
+  }
+
+  .search-input::placeholder { color: rgba(245,237,214,0.35); }
+  .search-input:focus { border-color: var(--gold); background: rgba(255,255,255,0.06); }
+
+  .search-icon {
+    position: absolute;
+    left: 18px;
+    top: 50%;
+    transform: translateY(-50%);
+    color: rgba(245,237,214,0.4);
+    font-size: 15px;
+    pointer-events: none;
+  }
+
+  /* ══ FILTER TABS ══ */
+  .filter-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-top: 16px;
+    flex-wrap: wrap;
+  }
+
+  .filter-tab {
+    padding: 7px 16px;
+    border-radius: 999px;
+    font-size: 12px;
+    font-weight: 500;
+    border: 1px solid rgba(255,255,255,0.1);
+    background: rgba(255,255,255,0.02);
+    color: rgba(255,255,255,0.5);
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+
+  .filter-tab:hover { background: rgba(255,255,255,0.06); color: #fff; }
+
+  .filter-tab.active {
+    background: rgba(201,150,62,0.15);
+    border-color: rgba(201,150,62,0.4);
+    color: var(--gold-light);
+  }
+
+  /* ══ SURAH GRID ══ */
+  .surah-section { padding: 24px 16px 60px; }
+
+  .section-title {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    color: var(--gold);
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .surah-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+    gap: 12px;
+  }
+
+  .surah-card {
+    border-radius: 12px;
+    border: 1px solid rgba(255,255,255,0.06);
+    background: rgba(255,255,255,0.02);
+    padding: 16px 14px;
+    text-decoration: none;
+    color: inherit;
+    transition: all 0.25s;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .surah-card.available { cursor: pointer; }
+  .surah-card.available:hover {
+    border-color: var(--gold);
+    background: rgba(201,150,62,0.08);
+    transform: translateY(-2px);
+  }
+
+  .surah-card.coming-soon { opacity: 0.35; cursor: default; }
+
+  .surah-no {
+    font-family: 'Playfair Display', serif;
+    font-size: 11px;
+    color: var(--gold);
+    font-weight: 700;
+  }
+
+  .surah-arabic {
+    font-family: 'Playfair Display', serif;
+    font-size: 20px;
+    color: var(--gold-light);
+    direction: rtl;
+    line-height: 1.3;
+  }
+
+  .surah-name { font-size: 12px; font-weight: 500; color: rgba(255,255,255,0.85); }
+
+  .surah-meta { font-size: 10px; color: rgba(255,255,255,0.35); font-weight: 300; }
+
+  .badge-soon, .badge-ready {
+    position: absolute;
+    top: 8px; right: 8px;
+    font-size: 8px;
+    padding: 2px 7px;
+    border-radius: 999px;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    font-weight: 600;
+  }
+  .badge-soon { background: rgba(255,255,255,0.06); color: rgba(255,255,255,0.4); }
+  .badge-ready { background: rgba(127,191,143,0.15); color: #7FBF8F; }
+
+  .hidden { display: none !important; }
+
+  .no-results {
+    text-align: center;
+    padding: 40px 0;
+    color: rgba(255,255,255,0.3);
+    font-size: 13px;
+    font-weight: 300;
+  }
+
+  /* ══ FOOTER ══ */
+  .footer {
+    border-top: 1px solid rgba(201,150,62,0.12);
+    padding: 32px 16px 40px;
+    text-align: center;
+  }
+
+  .footer p { font-size: 11px; color: rgba(255,255,255,0.35); font-weight: 300; line-height: 1.8; }
+
+  .footer .brand {
+    color: var(--gold);
+    font-weight: 600;
+    font-family: 'Playfair Display', serif;
+    font-size: 14px;
+    display: block;
+    margin-bottom: 8px;
+  }
+
+  .footer a { color: var(--gold-light); text-decoration: none; }
+  .footer a:hover { text-decoration: underline; }
+
+  @media (max-width: 480px) {
+    .logo { width: 110px; height: 110px; }
+    .stat-num { font-size: 20px; }
+    .surah-grid { grid-template-columns: repeat(auto-fill, minmax(120px, 1fr)); }
+  }
+</style>
+</head>
+<body>
+
+  <!-- ══ HERO ══ -->
+  <div class="hero">
+    <img src="assets/logo_aqcku.png" alt="AQCKU — Al-Quran CintaKU" class="logo">
+    <div class="arabic-tagline">اقْرَأْ بِحُبٍّ</div>
+    <div class="hero-tagline">"Memahami Al-Quran, Ayat demi Ayat, Surah demi Surah"</div>
+    <div class="hero-sub">
+      Sinopsis interaktif setiap surah dalam Al-Quran — ringkas, padat, dan
+      mudah difahami oleh semua peringkat. Lengkap dengan mind map, audio
+      bacaan, dan rujukan tafsir.
+    </div>
+
+    <div class="wrap">
+      <div class="stats-bar">
+        <div class="stat"><span class="stat-num">114</span><span class="stat-label">Surah</span></div>
+        <div class="stat"><span class="stat-num">6,236</span><span class="stat-label">Ayat</span></div>
+        <div class="stat"><span class="stat-num">1</span><span class="stat-label">Siap</span></div>
+        <div class="stat"><span class="stat-num">∞</span><span class="stat-label">Ibrah</span></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ══ SEARCH + FILTER ══ -->
+  <div class="search-section wrap">
+    <div class="search-box">
+      <span class="search-icon">🔍</span>
+      <input type="text" class="search-input" id="searchInput" placeholder="Cari surah... (contoh: Fatihah, Yasin, 36)">
+    </div>
+    <div class="filter-tabs">
+      <div class="filter-tab active" data-filter="all">Semua</div>
+      <div class="filter-tab" data-filter="phase1">Surah Amalan</div>
+      <div class="filter-tab" data-filter="phase2">Surah Lazim</div>
+      <div class="filter-tab" data-filter="phase3">Semua Surah</div>
+    </div>
+  </div>
+
+  <!-- ══ SURAH GRID ══ -->
+  <div class="surah-section wrap">
+    <div class="section-title">Senarai Surah</div>
+    <div class="surah-grid" id="surahGrid"></div>
+    <div class="no-results hidden" id="noResults">Tiada surah dijumpai. Cuba carian lain.</div>
+  </div>
+
+  <!-- ══ FOOTER ══ -->
+  <div class="footer">
+    <span class="brand">AQCKU</span>
+    <p>
+      Al-Quran CintaKU · Sinopsis Surah-Surah Al-Quran<br>
+      Rujukan: Tafsir Ibn Kathir (Abridged), 10 Jilid · Darussalam Publishers<br>
+      Ed. Safiur-Rahman al-Mubarakpuri ·
+      <a href="https://archive.org/details/IbnKathir_Tafseer" target="_blank">archive.org/details/IbnKathir_Tafseer</a>
+    </p>
+  </div>
+
+<script>
+const SURAH_LIST = [
+  {no:1,name:"Al-Fatihah",arabic:"الفاتحة",ayat:7,place:"makkah",phase:1,available:true,link:"01-al-fatihah/mindmap-al-fatihah.html"},
+  {no:2,name:"Al-Baqarah",arabic:"البقرة",ayat:286,place:"madinah",phase:1},
+  {no:3,name:"Ali \'Imran",arabic:"آل عمران",ayat:200,place:"madinah",phase:1},
+  {no:4,name:"An-Nisa\'",arabic:"النساء",ayat:176,place:"madinah",phase:3},
+  {no:5,name:"Al-Ma\'idah",arabic:"المائدة",ayat:120,place:"madinah",phase:3},
+  {no:6,name:"Al-An\'am",arabic:"الأنعام",ayat:165,place:"makkah",phase:3},
+  {no:7,name:"Al-A\'raf",arabic:"الأعراف",ayat:206,place:"makkah",phase:3},
+  {no:8,name:"Al-Anfal",arabic:"الأنفال",ayat:75,place:"madinah",phase:3},
+  {no:9,name:"At-Taubah",arabic:"التوبة",ayat:129,place:"madinah",phase:3},
+  {no:10,name:"Yunus",arabic:"يونس",ayat:109,place:"makkah",phase:3},
+  {no:11,name:"Hud",arabic:"هود",ayat:123,place:"makkah",phase:3},
+  {no:12,name:"Yusuf",arabic:"يوسف",ayat:111,place:"makkah",phase:3},
+  {no:13,name:"Ar-Ra\'d",arabic:"الرعد",ayat:43,place:"madinah",phase:3},
+  {no:14,name:"Ibrahim",arabic:"ابراهيم",ayat:52,place:"makkah",phase:3},
+  {no:15,name:"Al-Hijr",arabic:"الحجر",ayat:99,place:"makkah",phase:3},
+  {no:16,name:"An-Nahl",arabic:"النحل",ayat:128,place:"makkah",phase:3},
+  {no:17,name:"Al-Isra\'",arabic:"الإسراء",ayat:111,place:"makkah",phase:3},
+  {no:18,name:"Al-Kahf",arabic:"الكهف",ayat:110,place:"makkah",phase:1},
+  {no:19,name:"Maryam",arabic:"مريم",ayat:98,place:"makkah",phase:3},
+  {no:20,name:"Taha",arabic:"طه",ayat:135,place:"makkah",phase:3},
+  {no:21,name:"Al-Anbiya\'",arabic:"الأنبياء",ayat:112,place:"makkah",phase:3},
+  {no:22,name:"Al-Hajj",arabic:"الحج",ayat:78,place:"madinah",phase:3},
+  {no:23,name:"Al-Mu\'minun",arabic:"المؤمنون",ayat:118,place:"makkah",phase:3},
+  {no:24,name:"An-Nur",arabic:"النور",ayat:64,place:"madinah",phase:3},
+  {no:25,name:"Al-Furqan",arabic:"الفرقان",ayat:77,place:"makkah",phase:3},
+  {no:26,name:"Asy-Syu\'ara\'",arabic:"الشعراء",ayat:227,place:"makkah",phase:3},
+  {no:27,name:"An-Naml",arabic:"النمل",ayat:93,place:"makkah",phase:3},
+  {no:28,name:"Al-Qasas",arabic:"القصص",ayat:88,place:"makkah",phase:3},
+  {no:29,name:"Al-\'Ankabut",arabic:"العنكبوت",ayat:69,place:"makkah",phase:3},
+  {no:30,name:"Ar-Rum",arabic:"الروم",ayat:60,place:"makkah",phase:3},
+  {no:31,name:"Luqman",arabic:"لقمان",ayat:34,place:"makkah",phase:3},
+  {no:32,name:"As-Sajdah",arabic:"السجدة",ayat:30,place:"makkah",phase:1},
+  {no:33,name:"Al-Ahzab",arabic:"الأحزاب",ayat:73,place:"madinah",phase:3},
+  {no:34,name:"Saba\'",arabic:"سبأ",ayat:54,place:"makkah",phase:3},
+  {no:35,name:"Fatir",arabic:"فاطر",ayat:45,place:"makkah",phase:3},
+  {no:36,name:"Ya-Sin",arabic:"يس",ayat:83,place:"makkah",phase:1},
+  {no:37,name:"As-Saffat",arabic:"الصافات",ayat:182,place:"makkah",phase:3},
+  {no:38,name:"Sad",arabic:"ص",ayat:88,place:"makkah",phase:3},
+  {no:39,name:"Az-Zumar",arabic:"الزمر",ayat:75,place:"makkah",phase:3},
+  {no:40,name:"Ghafir",arabic:"غافر",ayat:85,place:"makkah",phase:3},
+  {no:41,name:"Fussilat",arabic:"فصلت",ayat:54,place:"makkah",phase:3},
+  {no:42,name:"Asy-Syura",arabic:"الشورى",ayat:53,place:"makkah",phase:3},
+  {no:43,name:"Az-Zukhruf",arabic:"الزخرف",ayat:89,place:"makkah",phase:3},
+  {no:44,name:"Ad-Dukhan",arabic:"الدخان",ayat:59,place:"makkah",phase:1},
+  {no:45,name:"Al-Jasiyah",arabic:"الجاثية",ayat:37,place:"makkah",phase:3},
+  {no:46,name:"Al-Ahqaf",arabic:"الأحقاف",ayat:35,place:"makkah",phase:3},
+  {no:47,name:"Muhammad",arabic:"محمد",ayat:38,place:"madinah",phase:3},
+  {no:48,name:"Al-Fath",arabic:"الفتح",ayat:29,place:"madinah",phase:3},
+  {no:49,name:"Al-Hujurat",arabic:"الحجرات",ayat:18,place:"madinah",phase:3},
+  {no:50,name:"Qaf",arabic:"ق",ayat:45,place:"makkah",phase:3},
+  {no:51,name:"Az-Zariyat",arabic:"الذاريات",ayat:60,place:"makkah",phase:3},
+  {no:52,name:"At-Tur",arabic:"الطور",ayat:49,place:"makkah",phase:3},
+  {no:53,name:"An-Najm",arabic:"النجم",ayat:62,place:"makkah",phase:3},
+  {no:54,name:"Al-Qamar",arabic:"القمر",ayat:55,place:"makkah",phase:3},
+  {no:55,name:"Ar-Rahman",arabic:"الرحمن",ayat:78,place:"madinah",phase:1},
+  {no:56,name:"Al-Waqi\'ah",arabic:"الواقعة",ayat:96,place:"makkah",phase:1},
+  {no:57,name:"Al-Hadid",arabic:"الحديد",ayat:29,place:"madinah",phase:3},
+  {no:58,name:"Al-Mujadalah",arabic:"المجادلة",ayat:22,place:"madinah",phase:3},
+  {no:59,name:"Al-Hasyr",arabic:"الحشر",ayat:24,place:"madinah",phase:3},
+  {no:60,name:"Al-Mumtahanah",arabic:"الممتحنة",ayat:13,place:"madinah",phase:3},
+  {no:61,name:"As-Saff",arabic:"الصف",ayat:14,place:"madinah",phase:3},
+  {no:62,name:"Al-Jumu\'ah",arabic:"الجمعة",ayat:11,place:"madinah",phase:3},
+  {no:63,name:"Al-Munafiqun",arabic:"المنافقون",ayat:11,place:"madinah",phase:3},
+  {no:64,name:"At-Tagabun",arabic:"التغابن",ayat:18,place:"madinah",phase:3},
+  {no:65,name:"At-Talaq",arabic:"الطلاق",ayat:12,place:"madinah",phase:3},
+  {no:66,name:"At-Tahrim",arabic:"التحريم",ayat:12,place:"madinah",phase:3},
+  {no:67,name:"Al-Mulk",arabic:"الملك",ayat:30,place:"makkah",phase:1},
+  {no:68,name:"Al-Qalam",arabic:"القلم",ayat:52,place:"makkah",phase:3},
+  {no:69,name:"Al-Haqqah",arabic:"الحاقة",ayat:52,place:"makkah",phase:3},
+  {no:70,name:"Al-Ma\'arij",arabic:"المعارج",ayat:44,place:"makkah",phase:3},
+  {no:71,name:"Nuh",arabic:"نوح",ayat:28,place:"makkah",phase:3},
+  {no:72,name:"Al-Jinn",arabic:"الجن",ayat:28,place:"makkah",phase:3},
+  {no:73,name:"Al-Muzzammil",arabic:"المزمل",ayat:20,place:"makkah",phase:3},
+  {no:74,name:"Al-Muddassir",arabic:"المدثر",ayat:56,place:"makkah",phase:3},
+  {no:75,name:"Al-Qiyamah",arabic:"القيامة",ayat:40,place:"makkah",phase:3},
+  {no:76,name:"Al-Insan",arabic:"الإنسان",ayat:31,place:"madinah",phase:3},
+  {no:77,name:"Al-Mursalat",arabic:"المرسلات",ayat:50,place:"makkah",phase:3},
+  {no:78,name:"An-Naba\'",arabic:"النبأ",ayat:40,place:"makkah",phase:2},
+  {no:79,name:"An-Nazi\'at",arabic:"النازعات",ayat:46,place:"makkah",phase:2},
+  {no:80,name:"\'Abasa",arabic:"عبس",ayat:42,place:"makkah",phase:2},
+  {no:81,name:"At-Takwir",arabic:"التكوير",ayat:29,place:"makkah",phase:2},
+  {no:82,name:"Al-Infitar",arabic:"الإنفطار",ayat:19,place:"makkah",phase:2},
+  {no:83,name:"Al-Mutaffifin",arabic:"المطففين",ayat:36,place:"makkah",phase:2},
+  {no:84,name:"Al-Insyiqaq",arabic:"الإنشقاق",ayat:25,place:"makkah",phase:2},
+  {no:85,name:"Al-Buruj",arabic:"البروج",ayat:22,place:"makkah",phase:2},
+  {no:86,name:"At-Tariq",arabic:"الطارق",ayat:17,place:"makkah",phase:2},
+  {no:87,name:"Al-A\'la",arabic:"الأعلى",ayat:19,place:"makkah",phase:2},
+  {no:88,name:"Al-Gasyiyah",arabic:"الغاشية",ayat:26,place:"makkah",phase:2},
+  {no:89,name:"Al-Fajr",arabic:"الفجر",ayat:30,place:"makkah",phase:2},
+  {no:90,name:"Al-Balad",arabic:"البلد",ayat:20,place:"makkah",phase:2},
+  {no:91,name:"Asy-Syams",arabic:"الشمس",ayat:15,place:"makkah",phase:2},
+  {no:92,name:"Al-Lail",arabic:"الليل",ayat:21,place:"makkah",phase:2},
+  {no:93,name:"Ad-Duha",arabic:"الضحى",ayat:11,place:"makkah",phase:2},
+  {no:94,name:"Al-Insyirah",arabic:"الإنشراح",ayat:8,place:"makkah",phase:2},
+  {no:95,name:"At-Tin",arabic:"التين",ayat:8,place:"makkah",phase:2},
+  {no:96,name:"Al-\'Alaq",arabic:"العلق",ayat:19,place:"makkah",phase:2},
+  {no:97,name:"Al-Qadr",arabic:"القدر",ayat:5,place:"makkah",phase:2},
+  {no:98,name:"Al-Bayyinah",arabic:"البينة",ayat:8,place:"madinah",phase:2},
+  {no:99,name:"Az-Zalzalah",arabic:"الزلزلة",ayat:8,place:"madinah",phase:2},
+  {no:100,name:"Al-\'Adiyat",arabic:"العاديات",ayat:11,place:"makkah",phase:2},
+  {no:101,name:"Al-Qari\'ah",arabic:"القارعة",ayat:11,place:"makkah",phase:2},
+  {no:102,name:"At-Takasur",arabic:"التكاثر",ayat:8,place:"makkah",phase:2},
+  {no:103,name:"Al-\'Asr",arabic:"العصر",ayat:3,place:"makkah",phase:2},
+  {no:104,name:"Al-Humazah",arabic:"الهمزة",ayat:9,place:"makkah",phase:2},
+  {no:105,name:"Al-Fil",arabic:"الفيل",ayat:5,place:"makkah",phase:2},
+  {no:106,name:"Quraisy",arabic:"قريش",ayat:4,place:"makkah",phase:2},
+  {no:107,name:"Al-Ma\'un",arabic:"الماعون",ayat:7,place:"makkah",phase:2},
+  {no:108,name:"Al-Kausar",arabic:"الكوثر",ayat:3,place:"makkah",phase:2},
+  {no:109,name:"Al-Kafirun",arabic:"الكافرون",ayat:6,place:"makkah",phase:2},
+  {no:110,name:"An-Nasr",arabic:"النصر",ayat:3,place:"madinah",phase:2},
+  {no:111,name:"Al-Lahab",arabic:"اللهب",ayat:5,place:"makkah",phase:2},
+  {no:112,name:"Al-Ikhlas",arabic:"الإخلاص",ayat:4,place:"makkah",phase:2},
+  {no:113,name:"Al-Falaq",arabic:"الفلق",ayat:5,place:"makkah",phase:2},
+  {no:114,name:"An-Nas",arabic:"الناس",ayat:6,place:"makkah",phase:2},
+];
+
+const grid = document.getElementById('surahGrid');
+const searchInput = document.getElementById('searchInput');
+const noResults = document.getElementById('noResults');
+let activeFilter = 'all';
+
+function renderGrid() {
+  const query = searchInput.value.trim().toLowerCase();
+  grid.innerHTML = '';
+  let visibleCount = 0;
+
+  SURAH_LIST.forEach(s => {
+    const matchesSearch = !query ||
+      s.name.toLowerCase().includes(query) ||
+      s.no.toString() === query ||
+      s.arabic.includes(query);
+
+    let matchesFilter = true;
+    if (activeFilter === 'phase1') matchesFilter = s.phase === 1;
+    else if (activeFilter === 'phase2') matchesFilter = s.phase === 2;
+    else if (activeFilter === 'phase3') matchesFilter = true; // "Semua Surah" shows all
+
+    if (!matchesSearch || !matchesFilter) return;
+    visibleCount++;
+
+    const isAvailable = !!s.available;
+    const el = document.createElement(isAvailable ? 'a' : 'div');
+    el.className = `surah-card ${isAvailable ? 'available' : 'coming-soon'}`;
+    if (isAvailable) el.href = s.link;
+
+    el.innerHTML = `
+      <span class="${isAvailable ? 'badge-ready' : 'badge-soon'}">${isAvailable ? 'Siap' : 'Akan Datang'}</span>
+      <span class="surah-no">${String(s.no).padStart(3,'0')}</span>
+      <span class="surah-arabic">${s.arabic}</span>
+      <span class="surah-name">${s.name}</span>
+      <span class="surah-meta">${s.ayat} ayat · ${s.place === 'makkah' ? 'Makkiyah' : 'Madaniyah'}</span>
+    `;
+    grid.appendChild(el);
+  });
+
+  noResults.classList.toggle('hidden', visibleCount > 0);
+}
+
+searchInput.addEventListener('input', renderGrid);
+
+document.querySelectorAll('.filter-tab').forEach(tab => {
+  tab.addEventListener('click', () => {
+    document.querySelectorAll('.filter-tab').forEach(t => t.classList.remove('active'));
+    tab.classList.add('active');
+    activeFilter = tab.dataset.filter;
+    renderGrid();
+  });
+});
+
+renderGrid();
+</script>
+</body>
+</html>

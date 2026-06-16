@@ -1,0 +1,1500 @@
+<!DOCTYPE html>
+<html lang="ms" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sinopsis Al-Quran — Halaman 1: Al-Fatihah</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=Noto+Naskh+Arabic:wght@400;600;700&display=swap');
+
+  :root {
+    --bg:         #0c1118;
+    --surface:    rgba(255,255,255,0.04);
+    --border:     rgba(255,255,255,0.07);
+    --gold:       #c9a84c;
+    --gold-dim:   rgba(201,168,76,0.13);
+    --gold-glow:  rgba(201,168,76,0.35);
+    --teal:       #2dd4bf;
+    --teal-dim:   rgba(45,212,191,0.10);
+    --text:       #eaeaea;
+    --text-dim:   #8a9ab0;
+    --text-faint: #4a5568;
+    --red-pin:    #e05c5c;
+    --blue-dia:   #5b9bd5;
+    --nav-h:      62px;
+  }
+
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    font-size: 14.5px;
+    line-height: 1.75;
+    min-height: 100vh;
+    overflow-x: hidden;
+  }
+
+  .bg-layer {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background:
+      radial-gradient(ellipse 70% 50% at 15% 5%,  rgba(201,168,76,0.08) 0%, transparent 60%),
+      radial-gradient(ellipse 55% 65% at 85% 95%, rgba(45,212,191,0.05) 0%, transparent 60%),
+      linear-gradient(160deg, #0c1118 0%, #0e1820 50%, #0c1118 100%);
+  }
+
+  /* ════════════════════════
+     TOP NAV
+  ════════════════════════ */
+  nav {
+    position: sticky; top: 0; z-index: 200;
+    height: var(--nav-h);
+    background: rgba(12,17,24,0.96);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    display: grid;
+    grid-template-columns: 200px 1fr 200px;
+    align-items: center;
+    padding: 0 20px;
+  }
+
+  /* Left — Logo */
+  .nav-logo {
+    display: flex; align-items: center; gap: 10px;
+    text-decoration: none;
+  }
+  .logo-box {
+    width: 38px; height: 38px;
+    border-radius: 9px;
+    background: var(--gold-dim);
+    border: 1px solid rgba(201,168,76,0.35);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 19px; flex-shrink: 0;
+  }
+  .logo-text-top  { font-size: 9px; letter-spacing:.14em; color:var(--text-faint); text-transform:uppercase; }
+  .logo-text-main { font-size: 13px; font-weight:600; color:var(--gold); }
+
+  /* Centre — MAIN HEADING */
+  .nav-centre {
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    text-align: center;
+  }
+
+  .nav-heading {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    background: linear-gradient(135deg, #f0c84a 0%, #c9a84c 40%, #e8d5a0 70%, #c9a84c 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 12px rgba(201,168,76,0.4));
+    line-height: 1.2;
+  }
+
+  .nav-sub {
+    font-size: 10px;
+    color: var(--text-faint);
+    letter-spacing: 0.10em;
+    margin-top: 2px;
+  }
+
+  /* Right — Lang (subtle) */
+  .nav-right {
+    display: flex; justify-content: flex-end; align-items: center; gap: 5px;
+  }
+
+  .lang-subtle {
+    padding: 3px 9px;
+    border-radius: 14px;
+    border: 1px solid var(--border);
+    background: transparent;
+    color: var(--text-faint);
+    font-size: 10.5px;
+    font-family: 'Inter', sans-serif;
+    font-weight: 500;
+    letter-spacing: 0.04em;
+    cursor: pointer;
+    transition: all 0.2s;
+  }
+  .lang-subtle.active { background:var(--gold-dim); border-color:rgba(201,168,76,0.4); color:var(--gold); }
+  .lang-subtle:hover:not(.active) { border-color:rgba(255,255,255,0.15); color:var(--text-dim); }
+
+  /* ════════════════════════
+     PAGE HEADER
+  ════════════════════════ */
+  .page-header {
+    position: relative; z-index: 1;
+    padding: 28px 24px 22px;
+    text-align: center;
+    border-bottom: 1px solid var(--border);
+    background: linear-gradient(to bottom, rgba(201,168,76,0.04), transparent);
+  }
+
+  .surah-badge {
+    display: inline-flex; align-items: center; gap: 8px;
+    font-size: 10px; letter-spacing:.14em;
+    color: var(--teal); text-transform: uppercase;
+    margin-bottom: 12px;
+  }
+  .surah-badge-dot { width:4px; height:4px; border-radius:50%; background:var(--teal); }
+
+  .surah-name-ar {
+    font-family: 'Noto Naskh Arabic', serif;
+    font-size: 40px; font-weight: 700;
+    color: var(--gold); direction: rtl;
+    margin-bottom: 5px; line-height: 1.4;
+    text-shadow: 0 0 30px rgba(201,168,76,0.2);
+  }
+
+  .surah-name-rumi {
+    font-size: 19px; font-weight: 600;
+    color: var(--text); margin-bottom: 14px;
+  }
+
+  .surah-meta {
+    display: flex; justify-content: center;
+    flex-wrap: wrap; gap: 7px;
+  }
+  .meta-pill {
+    padding: 3px 11px; border-radius: 12px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    font-size: 11px; color: var(--text-dim);
+  }
+
+  /* ════════════════════════
+     NAV TOOLBAR (Share / GoTo)
+  ════════════════════════ */
+  .nav-toolbar {
+    position: relative; z-index: 1;
+    display: flex; align-items: center;
+    gap: 6px; padding: 10px 20px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(12,17,24,0.5);
+    flex-wrap: wrap;
+  }
+
+  .tb-btn {
+    display: flex; align-items: center; gap: 6px;
+    padding: 6px 13px; border-radius: 7px;
+    border: 1px solid var(--border);
+    background: var(--surface);
+    color: var(--text-dim);
+    font-size: 11.5px; font-family:'Inter',sans-serif;
+    cursor: pointer; transition: all 0.18s;
+  }
+  .tb-btn:hover { border-color:var(--gold); color:var(--gold); }
+  .tb-btn.primary { border-color:rgba(201,168,76,0.3); color:var(--gold); background:var(--gold-dim); }
+
+  .tb-sep { width:1px; height:20px; background:var(--border); margin:0 2px; }
+
+  /* Go To Panel */
+  .goto-panel {
+    display: none;
+    position: absolute; top: 100%; left: 20px;
+    background: #141c26; border: 1px solid var(--border);
+    border-radius: 10px; padding: 16px;
+    z-index: 300; box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+    min-width: 280px;
+  }
+  .goto-panel.open { display: block; }
+  .goto-label { font-size: 10px; letter-spacing:.1em; color:var(--text-faint); text-transform:uppercase; margin-bottom:10px; }
+  .goto-row { display:flex; align-items:center; gap:8px; margin-bottom:8px; }
+  .goto-row label { font-size:12px; color:var(--text-dim); width:80px; flex-shrink:0; }
+  .goto-input {
+    flex:1; padding:6px 10px; border-radius:6px;
+    border:1px solid var(--border); background:rgba(255,255,255,0.05);
+    color:var(--text); font-size:12px; font-family:'Inter',sans-serif;
+    outline:none;
+  }
+  .goto-input:focus { border-color:var(--gold); }
+  .goto-go {
+    width:100%; padding:8px; border-radius:7px;
+    border:1px solid var(--gold); background:var(--gold-dim);
+    color:var(--gold); font-size:12px; font-family:'Inter',sans-serif;
+    cursor:pointer; margin-top:4px; transition:all .18s;
+  }
+  .goto-go:hover { background:var(--gold); color:#000; }
+
+  /* Share Panel */
+  .share-panel {
+    display: none;
+    position: absolute; top: 100%; left: 20px;
+    background: #141c26; border: 1px solid var(--border);
+    border-radius: 10px; padding: 16px;
+    z-index: 300; box-shadow: 0 8px 32px rgba(0,0,0,0.5);
+    min-width: 300px;
+  }
+  .share-panel.open { display: block; }
+  .share-url {
+    display:flex; align-items:center; gap:7px;
+    padding:8px 10px; border-radius:7px;
+    border:1px solid var(--border); background:rgba(255,255,255,0.04);
+    margin-bottom:10px;
+  }
+  .share-url-text { font-size:11px; color:var(--text-dim); flex:1; overflow:hidden; text-overflow:ellipsis; white-space:nowrap; }
+  .share-copy {
+    padding:4px 10px; border-radius:5px;
+    border:1px solid var(--border); background:var(--surface);
+    color:var(--text-dim); font-size:11px; font-family:'Inter',sans-serif;
+    cursor:pointer; flex-shrink:0; transition:all .18s;
+  }
+  .share-copy:hover { border-color:var(--gold); color:var(--gold); }
+  .share-options { display:flex; gap:7px; flex-wrap:wrap; }
+  .share-opt {
+    flex:1; min-width:80px;
+    padding:8px 10px; border-radius:7px;
+    border:1px solid var(--border); background:var(--surface);
+    color:var(--text-dim); font-size:11px; font-family:'Inter',sans-serif;
+    cursor:pointer; text-align:center; transition:all .18s;
+  }
+  .share-opt:hover { border-color:var(--gold); color:var(--gold); }
+
+  /* ════════════════════════
+     MAIN LAYOUT
+  ════════════════════════ */
+  .main {
+    position: relative; z-index: 1;
+    display: grid;
+    grid-template-columns: 248px 1fr;
+    min-height: calc(100vh - var(--nav-h));
+  }
+
+  /* ════════════════════════
+     SIDEBAR
+  ════════════════════════ */
+  .sidebar {
+    border-right: 1px solid var(--border);
+    background: rgba(12,17,24,0.65);
+    position: sticky; top: var(--nav-h);
+    height: calc(100vh - var(--nav-h));
+    overflow-y: auto; padding: 16px 0;
+    scrollbar-width: thin; scrollbar-color: var(--border) transparent;
+  }
+
+  .sb-label {
+    font-size: 9.5px; letter-spacing:.13em;
+    color:var(--text-faint); text-transform:uppercase;
+    padding: 0 16px 9px;
+  }
+
+  .sb-item {
+    display:flex; align-items:center; gap:9px;
+    padding: 7px 16px; font-size:12.5px;
+    color:var(--text-dim); cursor:pointer;
+    transition:all .18s; border-left:2px solid transparent;
+  }
+  .sb-item:hover { background:var(--surface); color:var(--text); }
+  .sb-item.active { background:var(--gold-dim); color:var(--gold); border-left-color:var(--gold); }
+  .sb-dot { width:7px; height:7px; border-radius:50%; background:currentColor; flex-shrink:0; }
+
+  .ayat-chips { display:flex; flex-wrap:wrap; gap:5px; padding:6px 16px 12px 32px; }
+  .chip {
+    width:30px; height:30px; border-radius:50%;
+    border:1px solid var(--border);
+    display:flex; align-items:center; justify-content:center;
+    font-size:11px; font-weight:500; color:var(--text-faint);
+    cursor:pointer; transition:all .15s;
+  }
+  .chip:hover { border-color:var(--gold); color:var(--gold); }
+  .chip.active { background:var(--gold); color:#000; border-color:var(--gold); font-weight:700; }
+
+  .sb-divider { height:1px; background:var(--border); margin:10px 16px; }
+
+  .sb-action {
+    display:flex; align-items:center; justify-content:center; gap:7px;
+    margin:6px 16px 0;
+    padding:8px; border-radius:8px;
+    border:1px solid var(--border); background:var(--surface);
+    color:var(--text-dim); font-size:11.5px;
+    font-family:'Inter',sans-serif; cursor:pointer;
+    transition:all .18s; width:calc(100% - 32px);
+  }
+  .sb-action:hover { border-color:var(--gold); color:var(--gold); }
+
+  /* ════════════════════════
+     CONTENT
+  ════════════════════════ */
+  .content { padding: 24px 32px 48px; max-width: 800px; }
+
+  /* ════════════════════════
+     AYAT CARD
+  ════════════════════════ */
+  .ayat-section {
+    margin-bottom: 20px;
+    scroll-margin-top: 80px;
+    opacity: 0; transform: translateY(14px);
+    animation: fadeUp 0.4s ease forwards;
+  }
+  .ayat-section:nth-child(1){animation-delay:.04s}
+  .ayat-section:nth-child(2){animation-delay:.09s}
+  .ayat-section:nth-child(3){animation-delay:.13s}
+  .ayat-section:nth-child(4){animation-delay:.17s}
+  .ayat-section:nth-child(5){animation-delay:.21s}
+  .ayat-section:nth-child(6){animation-delay:.25s}
+  .ayat-section:nth-child(7){animation-delay:.29s}
+  @keyframes fadeUp { to { opacity:1; transform:translateY(0); } }
+
+  .ayat-card {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: 12px; overflow: hidden;
+    transition: border-color 0.25s;
+  }
+  .ayat-card:hover { border-color: rgba(201,168,76,0.22); }
+
+  /* ── Pin Red Header (now with ayat number) ── */
+  .ayat-topbar {
+    display: flex; align-items: center; gap: 10px;
+    padding: 13px 18px 11px;
+    border-bottom: 1px solid var(--border);
+    background: rgba(224,92,92,0.04);
+  }
+
+  .pin-red-num {
+    display: flex; align-items: center; gap: 7px;
+    flex-shrink: 0;
+  }
+
+  .pin-emoji { font-size: 13px; }
+
+  .ayat-num-label {
+    font-size: 12px; font-weight: 700;
+    color: var(--red-pin);
+    background: rgba(224,92,92,0.12);
+    border: 1px solid rgba(224,92,92,0.25);
+    border-radius: 6px;
+    padding: 2px 8px;
+    letter-spacing: 0.04em;
+  }
+
+  .pin-red-title {
+    font-size: 14px; font-weight: 600;
+    color: var(--text); flex: 1;
+  }
+
+  /* ── Arabic Block ── */
+  .ayat-body {
+    padding: 18px 18px 15px;
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: flex-start; gap: 12px;
+  }
+
+  .ayat-arabic-wrap { flex: 1; }
+
+  /* Arabic text with number at end (RTL) */
+  .ayat-arabic {
+    font-family: 'Noto Naskh Arabic', serif;
+    font-size: 26px; font-weight: 600;
+    line-height: 2.0; color: var(--text);
+    direction: rtl; text-align: right;
+    margin-bottom: 10px;
+  }
+
+  .ayat-arabic-num {
+    font-family: 'Noto Naskh Arabic', serif;
+    font-size: 18px; color: var(--gold);
+    background: var(--gold-dim);
+    border: 1px solid rgba(201,168,76,0.3);
+    border-radius: 50%;
+    width: 30px; height: 30px;
+    display: inline-flex; align-items: center; justify-content: center;
+    margin-right: 4px;
+    vertical-align: middle;
+  }
+
+  .terjemahan-label {
+    font-size: 9.5px; letter-spacing:.10em;
+    color:var(--text-faint); text-transform:uppercase; margin-bottom:3px;
+  }
+  .terjemahan-text { font-size:13px; color:var(--text-dim); font-style:italic; line-height:1.65; }
+
+  .audio-btn {
+    width:38px; height:38px; border-radius:50%;
+    border:1px solid var(--gold); background:var(--gold-dim);
+    color:var(--gold); display:flex; align-items:center; justify-content:center;
+    cursor:pointer; transition:all .2s; flex-shrink:0; margin-top:4px;
+  }
+  .audio-btn:hover { background:var(--gold); color:#000; transform:scale(1.06); }
+  .audio-btn svg { width:13px; height:13px; margin-left:2px; }
+  .audio-btn.playing { background:var(--gold); color:#000; }
+
+  /* ── Points ── */
+  .ayat-points { padding: 14px 18px 16px; }
+
+  .point-item {
+    display:flex; align-items:flex-start; gap:9px;
+    padding:8px 0; border-bottom:1px solid rgba(255,255,255,0.03);
+  }
+  .point-item:last-child { border-bottom:none; padding-bottom:0; }
+
+  .dia-icon {
+    width:20px; height:20px; border-radius:4px;
+    background:rgba(91,155,213,0.10); border:1px solid rgba(91,155,213,0.25);
+    color:var(--blue-dia); display:flex; align-items:center; justify-content:center;
+    font-size:10px; flex-shrink:0; margin-top:2px;
+  }
+
+  .point-text { font-size:13.5px; color:var(--text-dim); line-height:1.72; flex:1; }
+
+  /* ── Ibn Kathir Quote ── */
+  .ik-quote {
+    margin: 11px 0 0;
+    padding: 11px 14px;
+    background: rgba(45,212,191,0.05);
+    border-left: 2px solid var(--teal);
+    border-radius: 0 8px 8px 0;
+  }
+  .ik-label { font-size:9.5px; letter-spacing:.09em; color:var(--teal); text-transform:uppercase; margin-bottom:4px; opacity:.75; }
+  .ik-text { font-size:13px; color:rgba(45,212,191,0.85); line-height:1.65; }
+
+  /* ════════════════════════
+     IBRAH SECTION
+  ════════════════════════ */
+  .ibrah-section {
+    margin-top: 28px;
+    border: 1px solid rgba(201,168,76,0.18);
+    border-radius: 14px; overflow: hidden;
+    opacity:0; transform:translateY(14px);
+    animation: fadeUp 0.4s ease 0.35s forwards;
+  }
+
+  .ibrah-head {
+    display:flex; align-items:center; gap:12px;
+    padding: 18px 24px;
+    background: linear-gradient(135deg, rgba(201,168,76,0.10) 0%, rgba(45,212,191,0.05) 100%);
+    border-bottom: 1px solid rgba(201,168,76,0.15);
+  }
+
+  .ibrah-icon {
+    width:38px; height:38px; border-radius:50%;
+    background:var(--gold-dim); border:1px solid rgba(201,168,76,0.35);
+    display:flex; align-items:center; justify-content:center;
+    font-size:17px; flex-shrink:0;
+  }
+
+  .ibrah-title { font-size:15px; font-weight:600; color:var(--gold); }
+  .ibrah-subtitle { font-size:10px; color:var(--text-faint); letter-spacing:.07em; margin-top:2px; }
+
+  /* Source badge */
+  .ibrah-source {
+    margin-left: auto;
+    padding: 5px 10px; border-radius: 7px;
+    border: 1px solid rgba(201,168,76,0.2);
+    background: rgba(201,168,76,0.06);
+    font-size: 10px; color: var(--text-faint);
+    text-align: right; line-height: 1.4;
+    flex-shrink: 0;
+  }
+  .ibrah-source strong { color: var(--gold); display:block; margin-bottom:1px; }
+
+  .ibrah-body { padding: 20px 24px; background: rgba(201,168,76,0.02); }
+
+  /* Istinbat label */
+  .istinbat-label {
+    display: inline-flex; align-items: center; gap: 6px;
+    font-size: 9.5px; letter-spacing:.10em;
+    color: var(--gold); text-transform: uppercase;
+    margin-bottom: 14px; opacity: 0.75;
+  }
+
+  .ibrah-points { display:flex; flex-direction:column; gap:12px; }
+
+  .ibrah-point { display:flex; gap:12px; align-items:flex-start; }
+
+  .ibrah-num {
+    width:22px; height:22px; border-radius:50%;
+    background:var(--gold-dim); border:1px solid rgba(201,168,76,0.35);
+    color:var(--gold); font-size:10.5px; font-weight:600;
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0; margin-top:3px;
+  }
+
+  .ibrah-text { font-size:13.5px; color:var(--text-dim); line-height:1.72; }
+  .ibrah-text strong { color:var(--text); font-weight:500; }
+
+  /* IK direct quote within ibrah */
+  .ibrah-ik {
+    margin-top: 3px;
+    padding: 3px 0 3px 10px;
+    border-left: 2px solid rgba(45,212,191,0.4);
+    font-size: 12.5px;
+    color: rgba(45,212,191,0.75);
+    font-style: italic;
+    line-height: 1.6;
+  }
+
+  .ibrah-hadith {
+    margin-top: 18px; padding: 13px 16px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid var(--border); border-radius: 8px;
+    font-size:13px; color:var(--text-dim);
+    font-style:italic; line-height:1.7;
+  }
+  .ibrah-hadith cite {
+    display:block; margin-top:6px;
+    font-style:normal; font-size:10.5px;
+    color:var(--text-faint); letter-spacing:.04em;
+  }
+
+  /* ════════════════════════
+     PAGE NAV + FOOTER
+  ════════════════════════ */
+  .page-nav {
+    display:flex; justify-content:space-between; align-items:center;
+    margin-top:32px; padding-top:18px;
+    border-top: 1px solid var(--border);
+  }
+
+  .nav-page-btn {
+    display:flex; align-items:center; gap:7px;
+    padding:8px 16px; border-radius:8px;
+    border:1px solid var(--border); background:var(--surface);
+    color:var(--text-dim); font-size:12.5px;
+    font-family:'Inter',sans-serif; cursor:pointer; transition:all .18s;
+  }
+  .nav-page-btn:hover:not(:disabled) { border-color:var(--gold); color:var(--gold); }
+  .nav-page-btn:disabled { opacity:.28; cursor:default; }
+
+  .page-indicator { font-size:11px; color:var(--text-faint); letter-spacing:.08em; }
+
+  .ref-footer {
+    margin-top: 16px; padding:12px 16px;
+    border-radius: 8px; border:1px solid var(--border);
+    background: var(--surface);
+    display:flex; align-items:flex-start; gap:10px;
+  }
+  .ref-icon { font-size:14px; flex-shrink:0; opacity:.6; margin-top:1px; }
+  .ref-text { font-size:11px; color:var(--text-faint); line-height:1.55; }
+  .ref-text strong { color:var(--text-dim); font-weight:500; }
+
+  /* ════════════════════════
+     PRINT
+  ════════════════════════ */
+  @media print {
+    nav .nav-right, .sidebar, .nav-toolbar, .audio-btn, .page-nav .nav-page-btn, .bg-layer { display:none !important; }
+    .main { grid-template-columns:1fr; }
+    .content { padding:0; max-width:100%; }
+    body { background:#fff; color:#111; }
+    .nav-heading { -webkit-text-fill-color:#8a6a1a; background:none; filter:none; }
+    .ayat-card { border:1px solid #ddd; break-inside:avoid; margin-bottom:14px; background:#fff; }
+    .ayat-arabic, .pin-red-title { color:#1a1a1a; }
+    .point-text, .ibrah-text { color:#333; }
+    .terjemahan-text { color:#555; }
+    .ik-text { color:#2a8a7a; }
+    .ik-quote { border-left:2px solid #2dd4bf; background:#f0fdfb; }
+    .ibrah-section { background:#fafafa; border:1px solid #ddd; }
+    .ref-footer { background:#f9f9f9; border:1px solid #eee; }
+    .ref-text { color:#666; }
+    nav { background:#fff; border-bottom:1px solid #ddd; -webkit-print-color-adjust:exact; }
+    .page-header { background:#fff; border-bottom:1px solid #ddd; }
+    .surah-name-ar { color:#8a6a1a; text-shadow:none; }
+    .ibrah-head { background:#f5f0e0; -webkit-print-color-adjust:exact; }
+  }
+
+  @media (max-width: 768px) {
+    .main { grid-template-columns:1fr; }
+    .sidebar { display:none; }
+    .content { padding:14px; }
+    .ayat-arabic { font-size:22px; }
+    nav { grid-template-columns:auto 1fr auto; }
+    .nav-heading { font-size:14px; letter-spacing:.06em; }
+  }
+
+  /* ════════════════════════
+     FLOATING AUDIO BUTTON
+  ════════════════════════ */
+  .fab {
+    position: fixed;
+    bottom: 22px;
+    right: 20px;
+    z-index: 500;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 8px;
+  }
+
+  .fab-btn {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.5);
+    background: rgba(13,17,24,0.88);
+    color: var(--gold);
+    display: flex; align-items: center; justify-content: center;
+    cursor: pointer;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.4), 0 0 10px rgba(201,168,76,0.12);
+    transition: all 0.25s;
+    flex-shrink: 0;
+    opacity: 0.72;
+  }
+
+  .fab-btn:hover {
+    transform: scale(1.06);
+    opacity: 1;
+    box-shadow: 0 4px 18px rgba(0,0,0,0.5), 0 0 16px rgba(201,168,76,0.25);
+  }
+
+  .fab-btn.playing {
+    border-color: rgba(45,212,191,0.6);
+    color: var(--teal);
+    opacity: 0.85;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.4), 0 0 14px rgba(45,212,191,0.2);
+    animation: fabPulse 2.5s ease-in-out infinite;
+  }
+
+  @keyframes fabPulse {
+    0%, 100% { box-shadow: 0 4px 20px rgba(0,0,0,0.5), 0 0 22px rgba(45,212,191,0.25); }
+    50%       { box-shadow: 0 4px 20px rgba(0,0,0,0.5), 0 0 36px rgba(45,212,191,0.45); }
+  }
+
+  .fab-btn svg { width: 15px; height: 15px; }
+
+  /* Info tooltip above button */
+  .fab-info {
+    display: none;
+    background: rgba(13,17,24,0.95);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 8px 14px;
+    text-align: right;
+    backdrop-filter: blur(10px);
+    box-shadow: 0 4px 16px rgba(0,0,0,0.4);
+  }
+
+  .fab-info.visible { display: block; }
+
+  .fab-info-label {
+    font-size: 10px; letter-spacing: .08em;
+    color: var(--text-faint); text-transform: uppercase; margin-bottom: 2px;
+  }
+
+  .fab-info-status {
+    font-size: 13px; font-weight: 600; color: var(--gold);
+  }
+
+  .fab-info-status.playing { color: var(--teal); }
+
+  .fab-info-sub {
+    font-size: 11px; color: var(--text-dim); margin-top: 1px;
+  }
+
+  /* Tooltip label on hover */
+  .fab-tooltip {
+    position: absolute;
+    right: 70px;
+    background: rgba(13,17,24,0.92);
+    border: 1px solid var(--border);
+    border-radius: 8px;
+    padding: 6px 12px;
+    font-size: 12px; color: var(--text);
+    white-space: nowrap;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.2s;
+    backdrop-filter: blur(8px);
+  }
+
+  .fab:hover .fab-tooltip { opacity: 1; }
+
+  @media (max-width: 768px) {
+    .fab { bottom: 16px; right: 14px; }
+    .fab-btn { width: 36px; height: 36px; }
+  }
+
+  @media print {
+    .fab { display: none !important; }
+  }
+
+</style>
+</head>
+<body>
+<div class="bg-layer"></div>
+
+<!-- ══ NAV ══ -->
+<nav>
+  <a class="nav-logo" href="#">
+    <div class="logo-box">🌙</div>
+    <div>
+      <div class="logo-text-top">Projek</div>
+      <div class="logo-text-main">SinopsisQuran</div>
+    </div>
+  </a>
+
+  <div class="nav-centre">
+    <div class="nav-heading">Sinopsis Al-Quran</div>
+    <div class="nav-sub">Halaman 1 &nbsp;·&nbsp; Al-Fatihah &nbsp;·&nbsp; Juzuk 1</div>
+  </div>
+
+  <div class="nav-right">
+    <button class="lang-subtle active" onclick="setLang('my')">🇲🇾 BM</button>
+    <button class="lang-subtle" onclick="setLang('en')">🇬🇧 EN</button>
+  </div>
+</nav>
+
+<!-- ══ PAGE HEADER ══ -->
+<div class="page-header">
+  <div class="surah-badge">
+    <span class="surah-badge-dot"></span>
+    Juzuk 1 &nbsp;·&nbsp; Halaman 1 &nbsp;·&nbsp; Makkiyyah &nbsp;·&nbsp; 7 Ayat
+    <span class="surah-badge-dot"></span>
+  </div>
+  <div class="surah-name-ar">الْفَاتِحَة</div>
+  <div class="surah-name-rumi">Surah Al-Fatihah</div>
+  <div class="surah-meta">
+    <span class="meta-pill">Surah ke-1</span>
+    <span class="meta-pill">25 patah perkataan</span>
+    <span class="meta-pill">113 huruf</span>
+    <span class="meta-pill">Umm Al-Kitab</span>
+  </div>
+</div>
+
+<!-- ══ NAV TOOLBAR ══ -->
+<div class="nav-toolbar">
+  <button class="tb-btn primary" onclick="toggleShare()">🔗 Kongsi</button>
+  <button class="tb-btn" onclick="toggleGoto()">📄 Pergi ke Halaman</button>
+  <button class="tb-btn" onclick="toggleGotoAyat()">🔢 Pergi ke Ayat</button>
+  <div class="tb-sep"></div>
+  <button class="tb-btn" onclick="window.print()">🖨 Cetak / PDF</button>
+
+  <!-- Share Panel -->
+  <div class="share-panel" id="sharePanel">
+    <div class="goto-label">Kongsi Halaman Ini</div>
+    <div class="share-url">
+      <span class="share-url-text" id="shareUrl">https://sinopsisquran.com/halaman.html?pg=1&lang=my</span>
+      <button class="share-copy" onclick="copyUrl()">Salin</button>
+    </div>
+    <div class="share-options">
+      <button class="share-opt" onclick="shareWhatsApp()">📱 WhatsApp</button>
+      <button class="share-opt" onclick="shareTelegram()">✈️ Telegram</button>
+      <button class="share-opt" onclick="shareEmail()">📧 E-mel</button>
+    </div>
+  </div>
+
+  <!-- Go To Page Panel -->
+  <div class="goto-panel" id="gotoPanel">
+    <div class="goto-label">Pergi ke Halaman</div>
+    <div class="goto-row">
+      <label>No. Halaman</label>
+      <input class="goto-input" type="number" id="gotoPageNum" min="1" max="604" placeholder="1 – 604">
+    </div>
+    <button class="goto-go" onclick="goToPage()">Pergi →</button>
+  </div>
+
+  <!-- Go To Ayat Panel -->
+  <div class="goto-panel" id="gotoAyatPanel">
+    <div class="goto-label">Pergi ke Ayat</div>
+    <div class="goto-row">
+      <label>No. Surah</label>
+      <input class="goto-input" type="number" id="gotoSurahNum" min="1" max="114" placeholder="1 – 114">
+    </div>
+    <div class="goto-row">
+      <label>No. Ayat</label>
+      <input class="goto-input" type="number" id="gotoAyatNum" min="1" placeholder="Contoh: 5">
+    </div>
+    <button class="goto-go" onclick="goToAyat()">Pergi →</button>
+  </div>
+</div>
+
+<!-- ══ MAIN ══ -->
+<div class="main" onclick="closePanels(event)">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+    <div class="sb-label">Navigasi Surah</div>
+    <div class="sb-item active"><div class="sb-dot"></div>Al-Fatihah</div>
+    <div class="ayat-chips">
+      <div class="chip active" onclick="goAyat(1)">1</div>
+      <div class="chip" onclick="goAyat(2)">2</div>
+      <div class="chip" onclick="goAyat(3)">3</div>
+      <div class="chip" onclick="goAyat(4)">4</div>
+      <div class="chip" onclick="goAyat(5)">5</div>
+      <div class="chip" onclick="goAyat(6)">6</div>
+      <div class="chip" onclick="goAyat(7)">7</div>
+    </div>
+    <div class="sb-item" style="opacity:.35;cursor:default"><div class="sb-dot"></div>Al-Baqarah →</div>
+
+    <div class="sb-divider"></div>
+    <div class="sb-label">Juzuk</div>
+    <div class="sb-item active"><div class="sb-dot" style="background:var(--teal)"></div>Juzuk 1 (Hlm 1–21)</div>
+    <div class="sb-item" style="opacity:.35;cursor:default"><div class="sb-dot" style="width:6px;height:6px;background:var(--text-faint)"></div>Juzuk 2 →</div>
+
+    <div class="sb-divider"></div>
+    <button class="sb-action" onclick="window.print()">🖨 Cetak / Export PDF</button>
+    <button class="sb-action" style="margin-top:5px" onclick="toggleShare()">🔗 Kongsi Halaman</button>
+  </aside>
+
+  <!-- CONTENT -->
+  <main class="content">
+
+    <!-- ═══ AYAT 1 ═══ -->
+    <div class="ayat-section" id="ayat-1">
+      <div class="ayat-card">
+        <div class="ayat-topbar">
+          <div class="pin-red-num">
+            <span class="pin-emoji">📍</span>
+            <span class="ayat-num-label">Ayat 1</span>
+          </div>
+          <div class="pin-red-title my-text">Bismillah — Memulakan Dengan Nama Allah</div>
+          <div class="pin-red-title en-text" style="display:none">Bismillah — Beginning With the Name of Allah</div>
+        </div>
+        <div class="ayat-body">
+          <div class="ayat-arabic-wrap">
+            <div class="ayat-arabic">
+              بِسْمِ اللَّهِ الرَّحْمَٰنِ الرَّحِيمِ
+              <span class="ayat-arabic-num">١</span>
+            </div>
+            <div class="terjemahan-label">Terjemahan</div>
+            <div class="terjemahan-text my-text">"Dengan nama Allah, Yang Maha Pemurah, lagi Maha Mengasihani."</div>
+            <div class="terjemahan-text en-text" style="display:none">"In the name of Allah, the Most Gracious, the Most Merciful."</div>
+          </div>
+          <button class="audio-btn" id="ab-1-1" onclick="playAudio(1,1)" title="Mishary Rashid Al-Afasy">
+            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6,3 20,12 6,21"/></svg>
+          </button>
+        </div>
+        <div class="ayat-points">
+          <div class="point-item">
+            <div class="dia-icon">💎</div>
+            <div class="point-text my-text">Majoriti ulama Kufah dan sebahagian Sahabat menetapkan bahawa Bismillah adalah ayat yang berdiri sendiri dalam Surah Al-Fatihah — bukan sekadar pembuka biasa.</div>
+            <div class="point-text en-text" style="display:none">The majority of Kufah scholars and a number of Companions determined that Bismillah is a standalone Ayah within Al-Fatihah — not merely a conventional opener.</div>
+          </div>
+          <div class="point-item">
+            <div class="dia-icon">💎</div>
+            <div class="point-text my-text">Nama <em>Allah</em> adalah nama yang paling mulia, merujuk kepada Zat yang berhak disembah. <em>Ar-Rahman</em> dan <em>Ar-Rahim</em> keduanya dari akar <em>rahmah</em>, namun <em>Ar-Rahman</em> lebih luas meliputi semua makhluk di dunia.</div>
+            <div class="point-text en-text" style="display:none">The name <em>Allah</em> is the most noble, referring to the Deity worthy of worship. Both <em>Ar-Rahman</em> and <em>Ar-Rahim</em> come from <em>rahmah</em>, yet <em>Ar-Rahman</em> is broader — encompassing all creation in this world.</div>
+          </div>
+          <div class="point-item">
+            <div class="dia-icon">💎</div>
+            <div class="point-text my-text"><em>Ar-Rahim</em> merujuk kepada rahmat khusus Allah bagi orang mukmin di akhirat. Memulakan sebarang perkara dengan Bismillah adalah mengikut sunnah Nabi ﷺ kerana Al-Quran dan surat-surat Baginda dimulakan dengannya.</div>
+            <div class="point-text en-text" style="display:none"><em>Ar-Rahim</em> refers to Allah's special mercy reserved for believers in the Hereafter. Beginning any matter with Bismillah follows the Sunnah — the Quran and the Prophet's ﷺ letters all begin with it.</div>
+          </div>
+          <div class="ik-quote">
+            <div class="ik-label">Ibn Kathīr — Tafsir Jilid 1</div>
+            <div class="ik-text my-text">Ibn Kathīr menegaskan: memulakan dengan Bismillah mengajarkan bahawa tiada keberkatan dalam sebarang urusan melainkan ia dimulakan dengan nama Allah Yang Maha Pemurah lagi Maha Mengasihani.</div>
+            <div class="ik-text en-text" style="display:none">Ibn Kathīr affirms: beginning with Bismillah teaches that there is no blessing in any matter unless it begins with the name of Allah, the Most Gracious, the Most Merciful.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ AYAT 2 ═══ -->
+    <div class="ayat-section" id="ayat-2">
+      <div class="ayat-card">
+        <div class="ayat-topbar">
+          <div class="pin-red-num"><span class="pin-emoji">📍</span><span class="ayat-num-label">Ayat 2</span></div>
+          <div class="pin-red-title my-text">Al-Hamd — Segala Puji Hanya Milik Allah</div>
+          <div class="pin-red-title en-text" style="display:none">Al-Hamd — All Praise Belongs Only to Allah</div>
+        </div>
+        <div class="ayat-body">
+          <div class="ayat-arabic-wrap">
+            <div class="ayat-arabic">الْحَمْدُ لِلَّهِ رَبِّ الْعَالَمِينَ <span class="ayat-arabic-num">٢</span></div>
+            <div class="terjemahan-label">Terjemahan</div>
+            <div class="terjemahan-text my-text">"Segala puji tertentu bagi Allah, Tuhan yang memelihara dan mentadbirkan sekalian alam."</div>
+            <div class="terjemahan-text en-text" style="display:none">"All praise and thanks be to Allah, the Lord of all that exists."</div>
+          </div>
+          <button class="audio-btn" id="ab-1-2" onclick="playAudio(1,2)" title="Mishary Rashid Al-Afasy">
+            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6,3 20,12 6,21"/></svg>
+          </button>
+        </div>
+        <div class="ayat-points">
+          <div class="point-item">
+            <div class="dia-icon">💎</div>
+            <div class="point-text my-text"><em>Al-Hamd</em> bermaksud pujian yang sempurna dan menyeluruh — hanya layak bagi Allah. Ia berbeza dengan <em>al-madh</em> (sanjungan biasa) kerana mengandungi pengakuan kebesaran dan kecintaan sepenuh hati.</div>
+            <div class="point-text en-text" style="display:none"><em>Al-Hamd</em> means perfect and all-encompassing praise — befitting Allah alone. It differs from ordinary praise as it carries wholehearted acknowledgment of His greatness and love.</div>
+          </div>
+          <div class="point-item">
+            <div class="dia-icon">💎</div>
+            <div class="point-text my-text"><em>Rabb</em> bermaksud Tuhan, Pemilik, Pengurus dan Pemelihara. Ibn Kathīr menegaskan nama <em>Rabb</em> tidak digunakan untuk selain Allah kecuali dengan tambahan seperti "tuan rumah."</div>
+            <div class="point-text en-text" style="display:none"><em>Rabb</em> means Lord, Owner, Director and Sustainer. Ibn Kathīr affirms that <em>Rabb</em> is not applied to other than Allah except with a qualifier, such as "master of the house."</div>
+          </div>
+          <div class="point-item">
+            <div class="dia-icon">💎</div>
+            <div class="point-text my-text"><em>Al-'Alamin</em> merangkumi seluruh makhluk — manusia, jin, malaikat, haiwan dan segala yang wujud. Allah adalah Tuhan dan Pemelihara bagi semuanya tanpa pengecualian.</div>
+            <div class="point-text en-text" style="display:none"><em>Al-'Alamin</em> encompasses all creation — humans, jinn, angels, animals and everything that exists. Allah is the Lord and Sustainer of them all, without exception.</div>
+          </div>
+          <div class="ik-quote">
+            <div class="ik-label">Ibn Kathīr — Tafsir Jilid 1</div>
+            <div class="ik-text my-text">Ibn Kathīr menyatakan Al-Fatihah adalah <em>Umm Al-Kitab</em> (Induk Al-Quran) kerana ia merangkumi makna keseluruhan Al-Quran — tauhid, hukum dan kisah. Rasulullah ﷺ menyebutnya surah paling agung dalam Al-Quran.</div>
+            <div class="ik-text en-text" style="display:none">Ibn Kathīr states that Al-Fatihah is <em>Umm Al-Kitab</em> (Mother of the Book) as it encompasses the meanings of the entire Quran — monotheism, rulings and stories. The Prophet ﷺ called it the greatest Surah in the Quran.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ AYAT 3 ═══ -->
+    <div class="ayat-section" id="ayat-3">
+      <div class="ayat-card">
+        <div class="ayat-topbar">
+          <div class="pin-red-num"><span class="pin-emoji">📍</span><span class="ayat-num-label">Ayat 3</span></div>
+          <div class="pin-red-title my-text">Ar-Rahman Ar-Rahim — Dua Nama Rahmat Allah</div>
+          <div class="pin-red-title en-text" style="display:none">Ar-Rahman Ar-Rahim — Two Names of Allah's Mercy</div>
+        </div>
+        <div class="ayat-body">
+          <div class="ayat-arabic-wrap">
+            <div class="ayat-arabic">الرَّحْمَٰنِ الرَّحِيمِ <span class="ayat-arabic-num">٣</span></div>
+            <div class="terjemahan-label">Terjemahan</div>
+            <div class="terjemahan-text my-text">"Yang Maha Pemurah, lagi Maha Mengasihani."</div>
+            <div class="terjemahan-text en-text" style="display:none">"The Most Gracious, the Most Merciful."</div>
+          </div>
+          <button class="audio-btn" id="ab-1-3" onclick="playAudio(1,3)" title="Mishary Rashid Al-Afasy">
+            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6,3 20,12 6,21"/></svg>
+          </button>
+        </div>
+        <div class="ayat-points">
+          <div class="point-item">
+            <div class="dia-icon">💎</div>
+            <div class="point-text my-text">Penyebutan semula dua nama ini bukan pengulangan sia-sia — ia menegaskan bahawa sifat rahmat Allah adalah teras hubungan-Nya dengan seluruh hamba di setiap saat.</div>
+            <div class="point-text en-text" style="display:none">The re-mention of these two names is not redundant — it emphasizes that Allah's mercy is the very core of His relationship with all servants at every moment.</div>
+          </div>
+          <div class="point-item">
+            <div class="dia-icon">💎</div>
+            <div class="point-text my-text">Ibn Kathīr memetik Imam Ibn Jarir: <em>Ar-Rahman</em> adalah sifat eksklusif Allah yang tidak boleh disifatkan kepada manusia, manakala <em>Ar-Rahim</em> boleh juga disifatkan kepada manusia dalam skala terhad — sebagaimana Allah menyifatkan Nabi ﷺ dengan <em>ra'ufun rahimun</em> (At-Taubah: 128).</div>
+            <div class="point-text en-text" style="display:none">Ibn Kathīr cites Imam Ibn Jarir: <em>Ar-Rahman</em> is exclusive to Allah and cannot be attributed to humans, while <em>Ar-Rahim</em> may apply to humans on a limited scale — as Allah described the Prophet ﷺ as <em>ra'ufun rahimun</em> (At-Tawbah: 128).</div>
+          </div>
+          <div class="point-item">
+            <div class="dia-icon">💎</div>
+            <div class="point-text my-text">Susunan kedua nama ini selepas <em>Rabb al-'Alamin</em> mengajarkan bahawa Allah mendidik makhluk-Nya dengan penuh kasih sayang — bukan paksaan atau kekerasan semata-mata.</div>
+            <div class="point-text en-text" style="display:none">The placement of these names after <em>Rabb al-'Alamin</em> teaches that Allah nurtures His creation with full compassion — not through mere coercion or force.</div>
+          </div>
+          <div class="ik-quote">
+            <div class="ik-label">Ibn Kathīr — Tafsir Jilid 1</div>
+            <div class="ik-text my-text">Ibn Kathīr menyebut: Allah menyebut rahmat-Nya sebelum azab-Nya, kerana rahmat Allah mendahului kemurkaan-Nya — sebagaimana yang dinyatakan dalam hadis sahih riwayat Bukhari dan Muslim.</div>
+            <div class="ik-text en-text" style="display:none">Ibn Kathīr notes: Allah mentions His mercy before His punishment, for His mercy precedes His wrath — as established in authentic hadiths recorded by Bukhari and Muslim.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ AYAT 4 ═══ -->
+    <div class="ayat-section" id="ayat-4">
+      <div class="ayat-card">
+        <div class="ayat-topbar">
+          <div class="pin-red-num"><span class="pin-emoji">📍</span><span class="ayat-num-label">Ayat 4</span></div>
+          <div class="pin-red-title my-text">Maliki Yawm al-Din — Pemilik Hari Pembalasan</div>
+          <div class="pin-red-title en-text" style="display:none">Maliki Yawm al-Din — Sovereign of the Day of Recompense</div>
+        </div>
+        <div class="ayat-body">
+          <div class="ayat-arabic-wrap">
+            <div class="ayat-arabic">مَالِكِ يَوْمِ الدِّينِ <span class="ayat-arabic-num">٤</span></div>
+            <div class="terjemahan-label">Terjemahan</div>
+            <div class="terjemahan-text my-text">"Yang Menguasai pemerintahan hari Pembalasan (hari Kiamat)."</div>
+            <div class="terjemahan-text en-text" style="display:none">"The Only Owner of the Day of Recompense."</div>
+          </div>
+          <button class="audio-btn" id="ab-1-4" onclick="playAudio(1,4)" title="Mishary Rashid Al-Afasy">
+            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6,3 20,12 6,21"/></svg>
+          </button>
+        </div>
+        <div class="ayat-points">
+          <div class="point-item">
+            <div class="dia-icon">💎</div>
+            <div class="point-text my-text"><em>Yawm al-Din</em> ialah Hari Kiamat — hari pembalasan dan perhitungan amal yang penuh dan tepat. <em>Al-Din</em> di sini bermaksud balasan dan hisab yang menyeluruh tanpa sebarang kezaliman.</div>
+            <div class="point-text en-text" style="display:none"><em>Yawm al-Din</em> is the Day of Judgment — the day of full and precise recompense and reckoning. <em>Al-Din</em> here denotes comprehensive accountability with no injustice whatsoever.</div>
+          </div>
+          <div class="point-item">
+            <div class="dia-icon">💎</div>
+            <div class="point-text my-text">Ibn Kathīr menjelaskan: pada hari itu, tiada seorang pun yang memiliki apa-apa tanpa izin Allah. Semua kerajaan dunia yang sementara akan terhapus, dan hanya kekuasaan Allah yang kekal mutlak.</div>
+            <div class="point-text en-text" style="display:none">Ibn Kathīr explains: on that Day, no one possesses anything without Allah's permission. All temporary worldly dominions will vanish, and only Allah's sovereignty remains absolute and eternal.</div>
+          </div>
+          <div class="point-item">
+            <div class="dia-icon">💎</div>
+            <div class="point-text my-text">Allah berfirman dalam hadis Qudsi sebagai respons kepada ayat ini: <em>"Hamba-Ku telah memuliakan Aku"</em> — menunjukkan betapa agungnya pengiktirafan terhadap kekuasaan mutlak Allah di akhirat.</div>
+            <div class="point-text en-text" style="display:none">Allah says in a Qudsi hadith in response to this verse: <em>"My servant has glorified Me"</em> — demonstrating how magnificent the acknowledgment of Allah's absolute sovereignty in the Hereafter truly is.</div>
+          </div>
+          <div class="ik-quote">
+            <div class="ik-label">Ibn Kathīr — Tafsir Jilid 1</div>
+            <div class="ik-text my-text">Ibn Kathīr menulis: menyebut Hari Pembalasan dalam doa harian mendorong manusia untuk sentiasa bersedia dan tidak terpedaya oleh kesenangan dunia yang fana, kerana setiap amalan akan dihitung dengan tepat.</div>
+            <div class="ik-text en-text" style="display:none">Ibn Kathīr writes: mentioning the Day of Recompense in daily prayer compels people to stay prepared and not be deceived by fleeting worldly pleasures, for every deed will be precisely accounted for.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ AYAT 5 ═══ -->
+    <div class="ayat-section" id="ayat-5">
+      <div class="ayat-card">
+        <div class="ayat-topbar">
+          <div class="pin-red-num"><span class="pin-emoji">📍</span><span class="ayat-num-label">Ayat 5</span></div>
+          <div class="pin-red-title my-text">Iyyaka Na'budu — Ikrar Ibadah dan Tawakkal</div>
+          <div class="pin-red-title en-text" style="display:none">Iyyaka Na'budu — Declaration of Worship and Reliance</div>
+        </div>
+        <div class="ayat-body">
+          <div class="ayat-arabic-wrap">
+            <div class="ayat-arabic">إِيَّاكَ نَعْبُدُ وَإِيَّاكَ نَسْتَعِينُ <span class="ayat-arabic-num">٥</span></div>
+            <div class="terjemahan-label">Terjemahan</div>
+            <div class="terjemahan-text my-text">"Engkaulah sahaja (Ya Allah) yang kami sembah, dan kepada Engkaulah sahaja kami memohon pertolongan."</div>
+            <div class="terjemahan-text en-text" style="display:none">"You (alone) we worship, and You (alone) we ask for help."</div>
+          </div>
+          <button class="audio-btn" id="ab-1-5" onclick="playAudio(1,5)" title="Mishary Rashid Al-Afasy">
+            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6,3 20,12 6,21"/></svg>
+          </button>
+        </div>
+        <div class="ayat-points">
+          <div class="point-item">
+            <div class="dia-icon">💎</div>
+            <div class="point-text my-text">Ibn Kathīr menyatakan ayat ini adalah paksi Al-Fatihah dan inti seluruh Al-Quran — merangkumi dua prinsip utama agama: <em>ibadah</em> yang hanya untuk Allah, dan <em>isti'anah</em> (memohon pertolongan) yang hanya kepada-Nya.</div>
+            <div class="point-text en-text" style="display:none">Ibn Kathīr states this verse is the pivot of Al-Fatihah and the essence of the entire Quran — encompassing the two main principles: <em>worship</em> for Allah alone, and <em>isti'anah</em> (seeking help) from Him alone.</div>
+          </div>
+          <div class="point-item">
+            <div class="dia-icon">💎</div>
+            <div class="point-text my-text">Ibn Kathīr menjelaskan: mendahulukan <em>iyyaka</em> (hanya kepada-Mu) sebelum kata kerja menunjukkan pengkhususan — ibadah dan permohonan pertolongan adalah eksklusif milik Allah, tidak boleh ditujukan kepada selain-Nya.</div>
+            <div class="point-text en-text" style="display:none">Ibn Kathīr explains: placing <em>iyyaka</em> (You alone) before the verb indicates exclusivity — worship and seeking help are Allah's exclusive right and cannot be directed to anyone else.</div>
+          </div>
+          <div class="point-item">
+            <div class="dia-icon">💎</div>
+            <div class="point-text my-text">Ibn Kathīr menegaskan inilah makna <em>la ilaha illallah</em> dalam bentuk perbuatan — mengakui tauhid bukan sekadar dengan lidah, tetapi dengan tindakan nyata dalam setiap aspek kehidupan.</div>
+            <div class="point-text en-text" style="display:none">Ibn Kathīr affirms this is the meaning of <em>la ilaha illallah</em> in action — acknowledging monotheism not merely verbally but through concrete commitment in every aspect of life.</div>
+          </div>
+          <div class="ik-quote">
+            <div class="ik-label">Ibn Kathīr — Tafsir Jilid 1</div>
+            <div class="ik-text my-text">Ibn Kathīr memetik hadis Qudsi: Allah berfirman <em>"Ini adalah antara Aku dan hamba-Ku, dan hamba-Ku akan mendapat apa yang dia pohon."</em> — Allah sendiri menjamin respons kepada setiap bacaan ayat ini dalam solat.</div>
+            <div class="ik-text en-text" style="display:none">Ibn Kathīr cites the Qudsi hadith: Allah says <em>"This is between Me and My servant, and My servant shall have what he asks for."</em> — Allah Himself guarantees a response to every recitation of this verse in prayer.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ AYAT 6 ═══ -->
+    <div class="ayat-section" id="ayat-6">
+      <div class="ayat-card">
+        <div class="ayat-topbar">
+          <div class="pin-red-num"><span class="pin-emoji">📍</span><span class="ayat-num-label">Ayat 6</span></div>
+          <div class="pin-red-title my-text">Ihdinash Shiratal Mustaqim — Doa Hidayah</div>
+          <div class="pin-red-title en-text" style="display:none">Ihdinash Shiratal Mustaqim — Prayer for Guidance</div>
+        </div>
+        <div class="ayat-body">
+          <div class="ayat-arabic-wrap">
+            <div class="ayat-arabic">اهْدِنَا الصِّرَاطَ الْمُسْتَقِيمَ <span class="ayat-arabic-num">٦</span></div>
+            <div class="terjemahan-label">Terjemahan</div>
+            <div class="terjemahan-text my-text">"Tunjukilah kami jalan yang lurus."</div>
+            <div class="terjemahan-text en-text" style="display:none">"Guide us to the Straight Path."</div>
+          </div>
+          <button class="audio-btn" id="ab-1-6" onclick="playAudio(1,6)" title="Mishary Rashid Al-Afasy">
+            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6,3 20,12 6,21"/></svg>
+          </button>
+        </div>
+        <div class="ayat-points">
+          <div class="point-item">
+            <div class="dia-icon">💎</div>
+            <div class="point-text my-text">Ibn Kathīr menerangkan <em>Al-Sirat al-Mustaqim</em> ialah jalan yang lurus, jelas dan tidak bengkok — merujuk kepada Islam yang sempurna sebagaimana dibawa oleh Rasulullah ﷺ dan para sahabatnya.</div>
+            <div class="point-text en-text" style="display:none">Ibn Kathīr explains <em>Al-Sirat al-Mustaqim</em> is the straight, clear and unbending path — referring to the perfect Islam as brought by the Prophet ﷺ and his Companions.</div>
+          </div>
+          <div class="point-item">
+            <div class="dia-icon">💎</div>
+            <div class="point-text my-text">Ibn Kathīr memetik tafsir Ibn Abi Hatim: jalan yang lurus itu ialah Al-Quran. Ada juga ulama yang menafsirkannya sebagai Rasulullah ﷺ dan para sahabatnya — semua tafsiran ini saling melengkapi dan tidak bercanggah.</div>
+            <div class="point-text en-text" style="display:none">Ibn Kathīr cites Ibn Abi Hatim: the straight path is the Quran. Some scholars interpret it as the Prophet ﷺ and his Companions — all these interpretations complement one another without contradiction.</div>
+          </div>
+          <div class="point-item">
+            <div class="dia-icon">💎</div>
+            <div class="point-text my-text">Ibn Kathīr menekankan: doa ini wajib dipohon dalam setiap rakaat solat — menunjukkan bahawa manusia sentiasa memerlukan hidayah Allah tidak kira setinggi mana ilmu atau amalan seseorang.</div>
+            <div class="point-text en-text" style="display:none">Ibn Kathīr emphasizes: this prayer must be made in every unit of prayer — showing that humans always need Allah's guidance regardless of how great one's knowledge or deeds may be.</div>
+          </div>
+          <div class="ik-quote">
+            <div class="ik-label">Ibn Kathīr — Tafsir Jilid 1</div>
+            <div class="ik-text my-text">Ibn Kathīr menulis: kita memohon hidayah selepas mengisytiharkan ibadah — ini mengajarkan bahawa hidayah bukan sesuatu yang boleh dicapai sendiri, tetapi mesti dipohon dari Allah pada setiap saat kerana hati manusia mudah berubah.</div>
+            <div class="ik-text en-text" style="display:none">Ibn Kathīr writes: we seek guidance after declaring worship — teaching that guidance cannot be self-achieved but must be sought from Allah at every moment, for human hearts are inherently prone to change.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ AYAT 7 ═══ -->
+    <div class="ayat-section" id="ayat-7">
+      <div class="ayat-card">
+        <div class="ayat-topbar">
+          <div class="pin-red-num"><span class="pin-emoji">📍</span><span class="ayat-num-label">Ayat 7</span></div>
+          <div class="pin-red-title my-text">Tiga Golongan Manusia — Nikmat, Murka dan Sesat</div>
+          <div class="pin-red-title en-text" style="display:none">Three Groups — The Blessed, the Angered and the Astray</div>
+        </div>
+        <div class="ayat-body">
+          <div class="ayat-arabic-wrap">
+            <div class="ayat-arabic">صِرَاطَ الَّذِينَ أَنْعَمْتَ عَلَيْهِمْ غَيْرِ الْمَغْضُوبِ عَلَيْهِمْ وَلَا الضَّالِّينَ <span class="ayat-arabic-num">٧</span></div>
+            <div class="terjemahan-label">Terjemahan</div>
+            <div class="terjemahan-text my-text">"Iaitu jalan orang-orang yang Engkau telah kurniakan nikmat kepada mereka, bukan (jalan) orang-orang yang Engkau murkai, dan bukan pula (jalan) orang-orang yang sesat."</div>
+            <div class="terjemahan-text en-text" style="display:none">"The way of those on whom You have bestowed Your Grace, not of those who earned Your anger, nor of those who went astray."</div>
+          </div>
+          <button class="audio-btn" id="ab-1-7" onclick="playAudio(1,7)" title="Mishary Rashid Al-Afasy">
+            <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6,3 20,12 6,21"/></svg>
+          </button>
+        </div>
+        <div class="ayat-points">
+          <div class="point-item">
+            <div class="dia-icon">💎</div>
+            <div class="point-text my-text">Ibn Kathīr menjelaskan golongan yang diberi nikmat ialah para nabi, siddiqin, syuhada dan orang-orang soleh — mereka yang mengikuti kebenaran dengan ilmu yang benar dan amalan yang betul di atas manhaj yang lurus.</div>
+            <div class="point-text en-text" style="display:none">Ibn Kathīr explains those blessed are the prophets, the truthful, martyrs and the righteous — those who followed truth with sound knowledge and correct action upon the straight methodology.</div>
+          </div>
+          <div class="point-item">
+            <div class="dia-icon">💎</div>
+            <div class="point-text my-text">Ibn Kathīr memetik hadis Rasulullah ﷺ: <em>Al-Maghdub 'alayhim</em> (yang dimurkai) merujuk kepada golongan yang mengetahui kebenaran tetapi meninggalkannya dengan sengaja, memilih dunia atas petunjuk Allah.</div>
+            <div class="point-text en-text" style="display:none">Ibn Kathīr cites a hadith of the Prophet ﷺ: <em>Al-Maghdub 'alayhim</em> (those who earned anger) refers to those who know the truth yet deliberately abandon it, choosing worldly gain over Allah's guidance.</div>
+          </div>
+          <div class="point-item">
+            <div class="dia-icon">💎</div>
+            <div class="point-text my-text">Ibn Kathīr menerangkan <em>Ad-Dallin</em> (yang sesat) ialah mereka yang beramal tanpa ilmu yang benar — tersesat kerana jahil atau mengikut hawa nafsu tanpa panduan wahyu yang sahih. Surah ditutup dengan <em>Amin</em> sebagai pengukuhan doa.</div>
+            <div class="point-text en-text" style="display:none">Ibn Kathīr explains <em>Ad-Dallin</em> (those astray) are those who act without sound knowledge — lost due to ignorance or following desires without authentic divine guidance. The Surah closes with <em>Ameen</em> to seal the supplication.</div>
+          </div>
+          <div class="ik-quote">
+            <div class="ik-label">Ibn Kathīr — Tafsir Jilid 1</div>
+            <div class="ik-text my-text">Ibn Kathīr merumuskan: pembahagian manusia kepada tiga golongan adalah peringatan keras — seseorang mesti memiliki ilmu yang benar DAN mengamalkannya. Ilmu tanpa amal membawa kemurkaan; amal tanpa ilmu membawa kesesatan.</div>
+            <div class="ik-text en-text" style="display:none">Ibn Kathīr concludes: the division into three groups is a stern warning — one must possess sound knowledge AND act upon it. Knowledge without action leads to anger; action without knowledge leads to going astray.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ═══ IBRAH ═══ -->
+    <div class="ibrah-section">
+      <div class="ibrah-head">
+        <div class="ibrah-icon">🌟</div>
+        <div>
+          <div class="ibrah-title my-text">Penghayatan & Ibrah</div>
+          <div class="ibrah-title en-text" style="display:none">Reflections & Lessons</div>
+          <div class="ibrah-subtitle">SURAH AL-FATIHAH (AYAT 1–7) &nbsp;·&nbsp; HALAMAN 1</div>
+        </div>
+        <div class="ibrah-source">
+          <strong>Sumber</strong>
+          Tafsir Ibn Kathīr<br>Darussalam, 10 Jilid
+        </div>
+      </div>
+      <div class="ibrah-body">
+        <div class="istinbat-label">
+          ✦ Istinbat dari Tafsir Ibn Kathīr
+        </div>
+        <div class="ibrah-points">
+
+          <div class="ibrah-point">
+            <div class="ibrah-num">1</div>
+            <div>
+              <div class="ibrah-text my-text">Ibn Kathīr menekankan bahawa memulakan dengan Bismillah bukan sekadar tradisi — ia adalah <strong>ikrar kebergantungan total kepada Allah</strong> kerana tiada keberkatan dalam sebarang urusan tanpa nama-Nya.</div>
+              <div class="ibrah-text en-text" style="display:none">Ibn Kathīr emphasizes that beginning with Bismillah is not mere tradition — it is a <strong>declaration of total dependence on Allah</strong>, for there is no blessing in any matter without His name.</div>
+              <div class="ibrah-ik my-text">"Tiada keberkatan dalam sebarang urusan melainkan ia dimulakan dengan nama Allah." — Ibn Kathīr, Tafsir Jilid 1</div>
+              <div class="ibrah-ik en-text" style="display:none">"There is no blessing in any matter unless it begins with the name of Allah." — Ibn Kathīr, Tafsir Vol. 1</div>
+            </div>
+          </div>
+
+          <div class="ibrah-point">
+            <div class="ibrah-num">2</div>
+            <div>
+              <div class="ibrah-text my-text">Dari tafsir Ibn Kathīr tentang <em>Al-Hamd</em>: pujian yang sempurna hanya milik Allah — ini mengajarkan bahawa <strong>manusia tidak layak berbangga dengan sebarang nikmat</strong> kerana semua bersumber dari Allah semata-mata.</div>
+              <div class="ibrah-text en-text" style="display:none">From Ibn Kathīr's tafsir on <em>Al-Hamd</em>: perfect praise belongs only to Allah — teaching that <strong>humans have no right to boast of any blessing</strong> since everything originates from Allah alone.</div>
+            </div>
+          </div>
+
+          <div class="ibrah-point">
+            <div class="ibrah-num">3</div>
+            <div>
+              <div class="ibrah-text my-text">Ibn Kathīr menyebut hadis sahih: rahmat Allah mendahului kemurkaan-Nya — ini <strong>membuka pintu harapan kepada setiap pendosa</strong> bahawa kembali kepada Allah sentiasa mungkin selagi hayat dikandung badan.</div>
+              <div class="ibrah-text en-text" style="display:none">Ibn Kathīr cites an authentic hadith: Allah's mercy precedes His wrath — this <strong>opens the door of hope for every sinner</strong> that returning to Allah is always possible as long as life remains.</div>
+              <div class="ibrah-ik my-text">"Rahmat Allah mendahului kemurkaan-Nya." — Hadis Sahih, riwayat Bukhari & Muslim; dikutip oleh Ibn Kathīr</div>
+              <div class="ibrah-ik en-text" style="display:none">"Allah's mercy precedes His wrath." — Authentic Hadith, Bukhari & Muslim; cited by Ibn Kathīr</div>
+            </div>
+          </div>
+
+          <div class="ibrah-point">
+            <div class="ibrah-num">4</div>
+            <div>
+              <div class="ibrah-text my-text">Ibn Kathīr menerangkan makna <em>Yawm al-Din</em>: kesedaran bahawa setiap amal akan dihisab dengan tepat <strong>mendorong manusia untuk tidak terpedaya oleh dunia</strong> dan sentiasa bersedia untuk akhirat.</div>
+              <div class="ibrah-text en-text" style="display:none">Ibn Kathīr explains the meaning of <em>Yawm al-Din</em>: awareness that every deed will be precisely accounted for <strong>drives people not to be deceived by the world</strong> and to always prepare for the Hereafter.</div>
+            </div>
+          </div>
+
+          <div class="ibrah-point">
+            <div class="ibrah-num">5</div>
+            <div>
+              <div class="ibrah-text my-text">Ibn Kathīr menyatakan ayat <em>iyyaka na'budu</em> mengajarkan bahawa <strong>ibadah dan permohonan pertolongan adalah eksklusif untuk Allah</strong> — inilah realisasi <em>la ilaha illallah</em> dalam bentuk perbuatan nyata.</div>
+              <div class="ibrah-text en-text" style="display:none">Ibn Kathīr states the verse <em>iyyaka na'budu</em> teaches that <strong>worship and seeking help are exclusively for Allah</strong> — this is the realization of <em>la ilaha illallah</em> in concrete action.</div>
+              <div class="ibrah-ik my-text">"Ini adalah antara Aku dan hamba-Ku, dan hamba-Ku akan mendapat apa yang dia pohon." — Hadis Qudsi, riwayat Muslim; dikutip oleh Ibn Kathīr</div>
+              <div class="ibrah-ik en-text" style="display:none">"This is between Me and My servant, and My servant shall have what he asks for." — Qudsi Hadith, Muslim; cited by Ibn Kathīr</div>
+            </div>
+          </div>
+
+          <div class="ibrah-point">
+            <div class="ibrah-num">6</div>
+            <div>
+              <div class="ibrah-text my-text">Ibn Kathīr menekankan doa hidayah yang berulang setiap hari mengajarkan bahawa <strong>hati manusia mudah berubah</strong> — hidayah bukan milik kekal tetapi anugerah Allah yang mesti dipohon pada setiap saat dengan rendah diri.</div>
+              <div class="ibrah-text en-text" style="display:none">Ibn Kathīr emphasizes the daily repeated prayer for guidance teaches that <strong>human hearts are prone to change</strong> — guidance is not a permanent possession but Allah's gift that must be sought humbly at every moment.</div>
+            </div>
+          </div>
+
+          <div class="ibrah-point">
+            <div class="ibrah-num">7</div>
+            <div>
+              <div class="ibrah-text my-text">Ibn Kathīr merumuskan: pembahagian manusia kepada tiga golongan mengajarkan bahawa <strong>Islam memerlukan ilmu yang benar DAN amalan yang betul</strong> — kekurangan mana-mana satu membawa kepada kemurkaan atau kesesatan.</div>
+              <div class="ibrah-text en-text" style="display:none">Ibn Kathīr concludes: the division into three groups teaches that <strong>Islam requires both sound knowledge AND correct action</strong> — lacking either one leads to anger or going astray.</div>
+              <div class="ibrah-ik my-text">"Ilmu tanpa amal membawa kemurkaan; amal tanpa ilmu membawa kesesatan." — Istinbat dari Ibn Kathīr, Tafsir Jilid 1</div>
+              <div class="ibrah-ik en-text" style="display:none">"Knowledge without action leads to anger; action without knowledge leads to going astray." — Inferred from Ibn Kathīr, Tafsir Vol. 1</div>
+            </div>
+          </div>
+
+        </div>
+
+        <div class="ibrah-hadith">
+          <span class="my-text">"Tidak ada dalam Al-Quran surah yang lebih afdal dari Al-Fatihah."</span>
+          <span class="en-text" style="display:none">"There is no Surah in the Quran more virtuous than Al-Fatihah."</span>
+          <cite>— Hadis riwayat Abu Dawud & At-Tirmidzi &nbsp;·&nbsp; Dikutip oleh Ibn Kathīr dalam Tafsir Jilid 1, Darussalam</cite>
+        </div>
+      </div>
+    </div>
+
+    <!-- PAGE NAV -->
+    <div class="page-nav">
+      <button class="nav-page-btn" disabled>← Halaman Sebelum</button>
+      <span class="page-indicator">HALAMAN 1 / 604</span>
+      <button class="nav-page-btn" onclick="alert('Halaman 2 — Al-Baqarah (akan datang)')">Halaman Seterusnya →</button>
+    </div>
+
+    <!-- REFERENCE FOOTER -->
+    <div class="ref-footer">
+      <span class="ref-icon">📚</span>
+      <div class="ref-text">
+        <strong>Sumber Rujukan:</strong> Tafsir Ibn Kathir (Abridged, 10 Volumes), Darussalam — Ed. Safiur-Rahman al-Mubarakpuri &nbsp;·&nbsp;
+        Audio: Mishary Rashid Al-Afasy, EveryAyah.com
+      </div>
+    </div>
+
+  </main>
+</div>
+
+<audio id="audioPlayer" style="display:none"></audio>
+
+<script>
+  // ── LANGUAGE ──
+  let lang = 'my';
+  function setLang(l) {
+    lang = l;
+    document.querySelectorAll('.lang-subtle').forEach(b => b.classList.remove('active'));
+    document.querySelector(`[onclick="setLang('${l}')"]`).classList.add('active');
+    document.querySelectorAll('.my-text').forEach(e => e.style.display = l==='my' ? '' : 'none');
+    document.querySelectorAll('.en-text').forEach(e => e.style.display = l==='en' ? '' : 'none');
+    document.documentElement.lang = l==='my' ? 'ms' : 'en';
+  }
+
+  // ── AUDIO ──
+  const player = document.getElementById('audioPlayer');
+  let nowPlaying = null;
+
+  function playAudio(surah, ayat) {
+    const s = String(surah).padStart(3,'0');
+    const a = String(ayat).padStart(3,'0');
+    const url = `https://www.everyayah.com/data/Mishary_Rashid_Al-Afasy_128kbps/${s}${a}.mp3`;
+    const btn = document.getElementById(`ab-${surah}-${ayat}`);
+
+    if (nowPlaying === url && !player.paused) {
+      player.pause(); nowPlaying = null;
+      document.querySelectorAll('.audio-btn').forEach(b => b.classList.remove('playing'));
+      return;
+    }
+    document.querySelectorAll('.audio-btn').forEach(b => b.classList.remove('playing'));
+    player.src = url;
+    player.play().catch(() => alert('Audio tidak dapat dimuat. Sila periksa sambungan internet.'));
+    nowPlaying = url;
+    if (btn) btn.classList.add('playing');
+    player.onended = () => { if(btn) btn.classList.remove('playing'); nowPlaying = null; };
+  }
+
+  // ── AYAT SCROLL ──
+  function goAyat(n) {
+    document.getElementById(`ayat-${n}`)?.scrollIntoView({ behavior:'smooth', block:'start' });
+    document.querySelectorAll('.chip').forEach((c,i) => c.classList.toggle('active', i+1===n));
+  }
+
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        const n = parseInt(e.target.id.replace('ayat-',''));
+        if (!isNaN(n)) document.querySelectorAll('.chip').forEach((c,i) => c.classList.toggle('active', i+1===n));
+      }
+    });
+  }, { threshold: 0.3, rootMargin:'-60px 0px 0px 0px' });
+  document.querySelectorAll('.ayat-section').forEach(el => io.observe(el));
+
+  // ── PANELS ──
+  function togglePanel(id) {
+    const panel = document.getElementById(id);
+    const isOpen = panel.classList.contains('open');
+    closePanels();
+    if (!isOpen) panel.classList.add('open');
+  }
+  function toggleShare()     { togglePanel('sharePanel'); }
+  function toggleGoto()      { togglePanel('gotoPanel'); }
+  function toggleGotoAyat()  { togglePanel('gotoAyatPanel'); }
+
+  function closePanels(e) {
+    if (e && e.target.closest('.nav-toolbar')) return;
+    document.querySelectorAll('.goto-panel, .share-panel').forEach(p => p.classList.remove('open'));
+  }
+
+  // ── GO TO PAGE ──
+  function goToPage() {
+    const n = parseInt(document.getElementById('gotoPageNum').value);
+    if (n >= 1 && n <= 604) {
+      alert(`Pergi ke Halaman ${n} (akan datang dalam versi penuh)`);
+    } else {
+      alert('Sila masukkan nombor halaman antara 1 hingga 604.');
+    }
+  }
+
+  // ── GO TO AYAT ──
+  function goToAyat() {
+    const s = document.getElementById('gotoSurahNum').value;
+    const a = document.getElementById('gotoAyatNum').value;
+    if (s && a) {
+      alert(`Pergi ke Surah ${s}, Ayat ${a} (akan datang dalam versi penuh)`);
+    } else {
+      alert('Sila isi nombor surah dan ayat.');
+    }
+  }
+
+  // ── SHARE ──
+  function copyUrl() {
+    const url = document.getElementById('shareUrl').textContent;
+    navigator.clipboard.writeText(url).then(() => alert('URL disalin!'));
+  }
+  function shareWhatsApp() {
+    window.open(`https://wa.me/?text=${encodeURIComponent('Sinopsis Al-Quran — Halaman 1 (Al-Fatihah): ' + window.location.href)}`);
+  }
+  function shareTelegram() {
+    window.open(`https://t.me/share/url?url=${encodeURIComponent(window.location.href)}&text=${encodeURIComponent('Sinopsis Al-Quran — Halaman 1: Al-Fatihah')}`);
+  }
+  function shareEmail() {
+    window.open(`mailto:?subject=Sinopsis Al-Quran — Al-Fatihah&body=${encodeURIComponent('Sinopsis Al-Quran Halaman 1:\n' + window.location.href)}`);
+  }
+
+  // ── TILAWAH PENUH (Floating Button) ──
+  const TOTAL_AYAT = 7;
+  const SURAH = 1;
+  let tilawahActive = false;
+  let tilawahAyat = 1;
+
+  const fabBtn    = document.getElementById('fabBtn');
+  const fabIcon   = document.getElementById('fabIcon');
+  const fabInfo   = document.getElementById('fabInfo');
+  const fabStatus = document.getElementById('fabStatus');
+  const fabSub    = document.getElementById('fabSub');
+  const fabTooltip = document.getElementById('fabTooltip');
+
+  const iconPlay = '<polygon points="6,3 20,12 6,21"/>';
+  const iconPause = '<rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/>';
+
+  function toggleTilawah() {
+    if (tilawahActive && !player.paused) {
+      // Pause
+      player.pause();
+      tilawahActive = false;
+      fabBtn.classList.remove('playing');
+      fabIcon.innerHTML = iconPlay;
+      fabStatus.textContent = 'Tilawah Penuh';
+      fabStatus.classList.remove('playing');
+      fabSub.textContent = 'Al-Fatihah · 7 Ayat';
+      fabInfo.classList.remove('visible');
+      fabTooltip.textContent = '▶ Tilawah Penuh';
+      document.querySelectorAll('.audio-btn').forEach(b => b.classList.remove('playing'));
+    } else if (!tilawahActive && !player.paused) {
+      // Something else playing — restart tilawah from ayat 1
+      tilawahAyat = 1;
+      startTilawah();
+    } else if (tilawahActive && player.paused) {
+      // Resume
+      player.play();
+      fabBtn.classList.add('playing');
+      fabIcon.innerHTML = iconPause;
+    } else {
+      // Fresh start
+      tilawahAyat = 1;
+      startTilawah();
+    }
+  }
+
+  function startTilawah() {
+    tilawahActive = true;
+    fabBtn.classList.add('playing');
+    fabIcon.innerHTML = iconPause;
+    fabInfo.classList.add('visible');
+    fabTooltip.textContent = '⏸ Berhenti';
+    playTilawahAyat(tilawahAyat);
+  }
+
+  function playTilawahAyat(ayat) {
+    const s = String(SURAH).padStart(3,'0');
+    const a = String(ayat).padStart(3,'0');
+    const url = `https://www.everyayah.com/data/Mishary_Rashid_Al-Afasy_128kbps/${s}${a}.mp3`;
+
+    // Update info panel
+    fabStatus.textContent = `Ayat ${ayat} / ${TOTAL_AYAT}`;
+    fabStatus.classList.add('playing');
+    fabSub.textContent = `Al-Fatihah · Mishary Afasy`;
+
+    // Highlight current ayat chip
+    document.querySelectorAll('.chip').forEach((c,i) => c.classList.toggle('active', i+1===ayat));
+
+    // Highlight audio btn
+    document.querySelectorAll('.audio-btn').forEach(b => b.classList.remove('playing'));
+    const btn = document.getElementById(`ab-${SURAH}-${ayat}`);
+    if (btn) btn.classList.add('playing');
+
+    // Scroll to ayat
+    document.getElementById(`ayat-${ayat}`)?.scrollIntoView({ behavior:'smooth', block:'center' });
+
+    // Play
+    nowPlaying = url;
+    player.src = url;
+    player.play().catch(() => {
+      alert('Audio tidak dapat dimuat. Sila periksa sambungan internet.');
+      stopTilawah();
+    });
+
+    player.onended = () => {
+      document.querySelectorAll('.audio-btn').forEach(b => b.classList.remove('playing'));
+      if (tilawahActive) {
+        tilawahAyat++;
+        if (tilawahAyat <= TOTAL_AYAT) {
+          setTimeout(() => playTilawahAyat(tilawahAyat), 800); // jeda 0.8s antara ayat
+        } else {
+          stopTilawah();
+        }
+      }
+    };
+  }
+
+  function stopTilawah() {
+    tilawahActive = false;
+    tilawahAyat = 1;
+    fabBtn.classList.remove('playing');
+    fabIcon.innerHTML = iconPlay;
+    fabStatus.textContent = 'Tilawah Penuh';
+    fabStatus.classList.remove('playing');
+    fabSub.textContent = 'Al-Fatihah · 7 Ayat';
+    fabInfo.classList.remove('visible');
+    fabTooltip.textContent = '▶ Tilawah Penuh';
+    nowPlaying = null;
+    document.querySelectorAll('.audio-btn').forEach(b => b.classList.remove('playing'));
+    document.querySelectorAll('.chip').forEach((c,i) => c.classList.toggle('active', i===0));
+  }
+
+  // Show info panel on hover
+  document.getElementById('fabContainer').addEventListener('mouseenter', () => {
+    if (tilawahActive) fabInfo.classList.add('visible');
+  });
+
+</script>
+
+<!-- ══ FLOATING AUDIO BUTTON ══ -->
+<div class="fab" id="fabContainer">
+  <div class="fab-info" id="fabInfo">
+    <div class="fab-info-label">Tilawah</div>
+    <div class="fab-info-status" id="fabStatus">Tilawah Penuh</div>
+    <div class="fab-info-sub" id="fabSub">Al-Fatihah · 7 Ayat</div>
+  </div>
+  <div style="position:relative">
+    <div class="fab-tooltip" id="fabTooltip">▶ Tilawah Penuh</div>
+    <button class="fab-btn" id="fabBtn" onclick="toggleTilawah()" title="Tilawah Penuh — Mishary Rashid Al-Afasy">
+      <svg id="fabIcon" viewBox="0 0 24 24" fill="currentColor"><polygon points="6,3 20,12 6,21"/></svg>
+    </button>
+  </div>
+</div>
+
+</body>
+</html>

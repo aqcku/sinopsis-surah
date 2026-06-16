@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="ms" dir="ltr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>AQCKU — Sinopsis Al-Quran</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Noto+Naskh+Arabic:wght@400;600;700&family=Crimson+Pro:ital,wght@0,400;0,600;1,400&display=swap');
+
+  :root {
+    --bg:         #0b0f1a;
+    --bg2:        #0e1525;
+    --surface:    rgba(255,255,255,0.04);
+    --border:     rgba(255,255,255,0.07);
+    --gold:       #c9a84c;
+    --gold-dim:   rgba(201,168,76,0.13);
+    --gold-glow:  rgba(201,168,76,0.3);
+    --silver:     #7eb8d4;
+    --silver-dim: rgba(126,184,212,0.12);
+    --teal:       #2dd4bf;
+    --text:       #eaeaea;
+    --text-dim:   #7a8fa8;
+    --text-faint: #3d4f66;
+    --green:      #0d3d36;
+  }
+
+  *, *::before, *::after { margin:0; padding:0; box-sizing:border-box; }
+
+  html { scroll-behavior: smooth; }
+
+  body {
+    background: var(--bg);
+    color: var(--text);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.7;
+    overflow-x: hidden;
+  }
+
+  /* ════ BACKGROUND ════ */
+  .bg-layer {
+    position: fixed; inset: 0; z-index: 0; pointer-events: none;
+    background:
+      radial-gradient(ellipse 80% 60% at 20% 10%, rgba(201,168,76,0.06) 0%, transparent 55%),
+      radial-gradient(ellipse 60% 80% at 80% 90%, rgba(126,184,212,0.05) 0%, transparent 55%),
+      radial-gradient(ellipse 40% 40% at 50% 50%, rgba(45,212,191,0.03) 0%, transparent 60%),
+      linear-gradient(160deg, #0b0f1a 0%, #0d1628 50%, #0b0f1a 100%);
+  }
+
+  /* ════ NAV ════ */
+  nav {
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    height: 60px;
+    background: rgba(11,15,26,0.92);
+    backdrop-filter: blur(16px);
+    border-bottom: 1px solid var(--border);
+    display: flex; align-items: center;
+    padding: 0 32px;
+    justify-content: space-between;
+  }
+
+  .nav-logo { display:flex; align-items:center; gap:10px; text-decoration:none; }
+  .nav-logo-img { width:36px; height:36px; border-radius:8px; object-fit:cover; }
+  .nav-logo-text { font-size:14px; font-weight:700; color:var(--gold); letter-spacing:.02em; }
+  .nav-logo-sub { font-size:9px; color:var(--text-faint); letter-spacing:.12em; text-transform:uppercase; }
+
+  .nav-links { display:flex; align-items:center; gap:6px; }
+  .nav-link {
+    padding:5px 14px; border-radius:8px;
+    font-size:12px; color:var(--text-dim);
+    text-decoration:none; transition:all .2s;
+    border:1px solid transparent;
+  }
+  .nav-link:hover { color:var(--text); background:var(--surface); border-color:var(--border); }
+
+  .nav-lang { display:flex; gap:5px; margin-left:12px; }
+  .lang-btn {
+    padding:4px 11px; border-radius:14px;
+    border:1px solid var(--border); background:transparent;
+    color:var(--text-faint); font-size:11px;
+    font-family:'Inter',sans-serif; cursor:pointer; transition:all .2s;
+  }
+  .lang-btn.my.active { background:var(--gold-dim); border-color:rgba(201,168,76,0.4); color:var(--gold); }
+  .lang-btn.en.active { background:var(--silver-dim); border-color:rgba(126,184,212,0.4); color:var(--silver); }
+  .lang-btn:hover:not(.active) { border-color:rgba(255,255,255,0.15); color:var(--text-dim); }
+
+  /* ════ HERO SECTION ════ */
+  .hero {
+    position: relative; z-index: 1;
+    min-height: 100vh;
+    display: flex; flex-direction: column;
+    align-items: center; justify-content: center;
+    padding: 100px 24px 60px;
+    text-align: center;
+  }
+
+  /* Decorative Arabic calligraphy ring */
+  .hero-ring {
+    width: 180px; height: 180px;
+    border-radius: 50%;
+    border: 1px solid rgba(201,168,76,0.15);
+    display: flex; align-items: center; justify-content: center;
+    margin-bottom: 32px;
+    position: relative;
+    animation: ringPulse 4s ease-in-out infinite;
+  }
+  .hero-ring::before {
+    content:'';
+    position:absolute; inset:-12px;
+    border-radius:50%;
+    border:1px solid rgba(201,168,76,0.08);
+  }
+  .hero-ring::after {
+    content:'';
+    position:absolute; inset:-24px;
+    border-radius:50%;
+    border:1px solid rgba(201,168,76,0.04);
+  }
+  @keyframes ringPulse {
+    0%,100% { box-shadow: 0 0 0 0 rgba(201,168,76,0); }
+    50% { box-shadow: 0 0 40px 8px rgba(201,168,76,0.08); }
+  }
+
+  .hero-logo {
+    width: 130px; height: 130px;
+    border-radius: 50%; object-fit: cover;
+    border: 2px solid rgba(201,168,76,0.3);
+  }
+
+  .hero-arabic {
+    font-family: 'Noto Naskh Arabic', serif;
+    font-size: 28px; color: var(--gold);
+    direction: rtl; margin-bottom: 8px;
+    opacity: 0.85;
+  }
+
+  .hero-tagline {
+    font-size: 12px; letter-spacing:.18em;
+    color: var(--text-faint); text-transform:uppercase;
+    margin-bottom: 28px;
+  }
+
+  .hero-title {
+    font-size: clamp(32px, 6vw, 56px);
+    font-weight: 800;
+    letter-spacing: -0.02em;
+    line-height: 1.1;
+    margin-bottom: 16px;
+    background: linear-gradient(135deg, #f0c84a 0%, #c9a84c 35%, #e8d5a0 65%, #c9a84c 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 30px rgba(201,168,76,0.3));
+  }
+
+  .hero-title-en {
+    background: linear-gradient(135deg, #a8d4e8 0%, #7eb8d4 35%, #c5dff0 65%, #7eb8d4 100%);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 30px rgba(126,184,212,0.3));
+  }
+
+  .hero-desc {
+    font-size: 16px; color: var(--text-dim);
+    max-width: 560px; line-height: 1.75;
+    margin-bottom: 40px;
+    font-family: 'Crimson Pro', serif;
+  }
+
+  /* CTA Buttons */
+  .hero-cta { display:flex; gap:12px; flex-wrap:wrap; justify-content:center; }
+
+  .cta-btn {
+    display:flex; align-items:center; gap:8px;
+    padding:13px 28px; border-radius:12px;
+    font-size:14px; font-weight:600;
+    font-family:'Inter',sans-serif;
+    cursor:pointer; transition:all .25s;
+    text-decoration:none;
+    letter-spacing:.02em;
+  }
+
+  .cta-my {
+    background: linear-gradient(135deg, rgba(201,168,76,0.2), rgba(201,168,76,0.1));
+    border:1px solid rgba(201,168,76,0.4);
+    color: var(--gold);
+  }
+  .cta-my:hover {
+    background: linear-gradient(135deg, rgba(201,168,76,0.3), rgba(201,168,76,0.15));
+    border-color: var(--gold);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(201,168,76,0.2);
+  }
+
+  .cta-en {
+    background: linear-gradient(135deg, rgba(126,184,212,0.15), rgba(126,184,212,0.08));
+    border:1px solid rgba(126,184,212,0.35);
+    color: var(--silver);
+  }
+  .cta-en:hover {
+    background: linear-gradient(135deg, rgba(126,184,212,0.25), rgba(126,184,212,0.12));
+    border-color: var(--silver);
+    transform: translateY(-2px);
+    box-shadow: 0 8px 24px rgba(126,184,212,0.15);
+  }
+
+  /* Scroll indicator */
+  .scroll-hint {
+    position: absolute; bottom: 28px; left: 50%;
+    transform: translateX(-50%);
+    display:flex; flex-direction:column; align-items:center; gap:6px;
+    font-size:10px; letter-spacing:.12em; color:var(--text-faint);
+    text-transform:uppercase; animation:bounce 2s ease-in-out infinite;
+  }
+  @keyframes bounce { 0%,100%{transform:translateX(-50%) translateY(0)} 50%{transform:translateX(-50%) translateY(6px)} }
+
+  /* ════ STATS BAR ════ */
+  .stats-bar {
+    position:relative; z-index:1;
+    padding:24px 32px;
+    border-top:1px solid var(--border);
+    border-bottom:1px solid var(--border);
+    background:rgba(255,255,255,0.02);
+    display:flex; justify-content:center; gap:0;
+    flex-wrap:wrap;
+  }
+
+  .stat-item {
+    display:flex; flex-direction:column; align-items:center;
+    padding:8px 32px;
+    border-right:1px solid var(--border);
+  }
+  .stat-item:last-child { border-right:none; }
+
+  .stat-num {
+    font-size:26px; font-weight:700;
+    color:var(--gold); letter-spacing:-.02em;
+  }
+  .stat-label { font-size:10px; color:var(--text-faint); letter-spacing:.10em; text-transform:uppercase; margin-top:2px; }
+
+  /* ════ NAVIGATOR SECTION ════ */
+  .section {
+    position:relative; z-index:1;
+    padding:64px 32px;
+    max-width:1100px; margin:0 auto;
+  }
+
+  .section-header { text-align:center; margin-bottom:40px; }
+  .section-label { font-size:10px; letter-spacing:.16em; color:var(--teal); text-transform:uppercase; margin-bottom:10px; }
+  .section-title { font-size:28px; font-weight:700; color:var(--text); }
+  .section-sub { font-size:14px; color:var(--text-dim); margin-top:8px; font-family:'Crimson Pro',serif; font-style:italic; }
+
+  /* Nav Mode Toggle */
+  .nav-mode {
+    display:flex; justify-content:center; gap:8px;
+    margin-bottom:36px;
+  }
+  .mode-btn {
+    padding:8px 22px; border-radius:20px;
+    border:1px solid var(--border); background:var(--surface);
+    color:var(--text-dim); font-size:13px;
+    font-family:'Inter',sans-serif; cursor:pointer; transition:all .2s;
+  }
+  .mode-btn.active { background:var(--gold-dim); border-color:rgba(201,168,76,0.4); color:var(--gold); }
+  .mode-btn:hover:not(.active) { border-color:rgba(255,255,255,0.15); color:var(--text); }
+
+  /* ── Surah Grid ── */
+  .surah-grid {
+    display:grid; grid-template-columns:repeat(auto-fill, minmax(200px, 1fr));
+    gap:12px;
+  }
+
+  .surah-card {
+    padding:16px 18px; border-radius:12px;
+    border:1px solid var(--border); background:var(--surface);
+    cursor:pointer; transition:all .22s;
+    display:flex; align-items:center; gap:12px;
+    text-decoration:none;
+  }
+  .surah-card:hover {
+    border-color:rgba(201,168,76,0.3);
+    background:var(--gold-dim);
+    transform:translateY(-2px);
+    box-shadow:0 6px 20px rgba(0,0,0,0.3);
+  }
+
+  .surah-num {
+    width:36px; height:36px; border-radius:50%;
+    border:1px solid rgba(201,168,76,0.3);
+    background:var(--gold-dim);
+    color:var(--gold); font-size:12px; font-weight:700;
+    display:flex; align-items:center; justify-content:center;
+    flex-shrink:0;
+  }
+
+  .surah-info { flex:1; min-width:0; }
+  .surah-name-ar { font-family:'Noto Naskh Arabic',serif; font-size:16px; color:var(--text); direction:rtl; text-align:right; line-height:1.4; }
+  .surah-name-rumi { font-size:12px; color:var(--gold); font-weight:500; margin-top:1px; }
+  .surah-meta-text { font-size:10px; color:var(--text-faint); margin-top:2px; }
+
+  .surah-status {
+    width:8px; height:8px; border-radius:50%;
+    background:var(--gold); flex-shrink:0;
+    box-shadow:0 0 6px var(--gold-glow);
+  }
+  .surah-status.pending { background:var(--text-faint); box-shadow:none; }
+
+  /* ── Juzuk Grid ── */
+  .juzuk-grid {
+    display:grid; grid-template-columns:repeat(auto-fill, minmax(160px,1fr));
+    gap:10px;
+  }
+
+  .juzuk-card {
+    padding:14px 16px; border-radius:12px;
+    border:1px solid var(--border); background:var(--surface);
+    cursor:pointer; transition:all .22s; text-align:center;
+    text-decoration:none;
+  }
+  .juzuk-card:hover {
+    border-color:rgba(126,184,212,0.3);
+    background:var(--silver-dim);
+    transform:translateY(-2px);
+    box-shadow:0 6px 20px rgba(0,0,0,0.3);
+  }
+  .juzuk-card.active {
+    border-color:rgba(126,184,212,0.4);
+    background:var(--silver-dim);
+  }
+
+  .juzuk-num { font-size:22px; font-weight:700; color:var(--silver); margin-bottom:3px; }
+  .juzuk-name { font-family:'Noto Naskh Arabic',serif; font-size:15px; color:var(--text); direction:rtl; margin-bottom:3px; }
+  .juzuk-pages { font-size:10px; color:var(--text-faint); letter-spacing:.06em; }
+  .juzuk-status { width:6px; height:6px; border-radius:50%; background:var(--silver); margin:6px auto 0; box-shadow:0 0 5px rgba(126,184,212,0.4); }
+  .juzuk-status.pending { background:var(--text-faint); box-shadow:none; }
+
+  /* ════ ABOUT SECTION ════ */
+  .about-section {
+    position:relative; z-index:1;
+    padding:64px 32px;
+    border-top:1px solid var(--border);
+    background:linear-gradient(to bottom, rgba(201,168,76,0.02), transparent);
+  }
+
+  .about-inner {
+    max-width:860px; margin:0 auto;
+    display:grid; grid-template-columns:1fr 1fr;
+    gap:32px;
+  }
+
+  .about-card {
+    padding:28px 32px; border-radius:16px;
+    border:1px solid var(--border);
+    background:var(--surface);
+    position:relative; overflow:hidden;
+  }
+
+  .about-card::before {
+    content:'';
+    position:absolute; top:0; left:0; right:0; height:2px;
+  }
+  .about-card.proj::before { background:linear-gradient(to right, var(--gold), transparent); }
+  .about-card.bio::before { background:linear-gradient(to right, var(--silver), transparent); }
+
+  .about-icon { font-size:28px; margin-bottom:14px; }
+
+  .about-card-title {
+    font-size:11px; letter-spacing:.14em;
+    text-transform:uppercase; margin-bottom:14px;
+  }
+  .about-card.proj .about-card-title { color:var(--gold); }
+  .about-card.bio .about-card-title { color:var(--silver); }
+
+  .about-text {
+    font-size:14.5px; color:var(--text-dim);
+    line-height:1.8; font-family:'Crimson Pro',serif;
+  }
+  .about-text strong { color:var(--text); font-weight:600; }
+  .about-text em { color:var(--gold); font-style:italic; }
+
+  .about-quote {
+    margin-top:16px; padding:12px 16px;
+    border-left:2px solid rgba(201,168,76,0.35);
+    font-size:13.5px; color:var(--text-dim);
+    font-style:italic; line-height:1.7;
+    font-family:'Crimson Pro',serif;
+  }
+
+  .about-ref {
+    margin-top:14px; padding:10px 14px;
+    border-radius:8px; background:rgba(255,255,255,0.03);
+    border:1px solid var(--border);
+    font-size:11px; color:var(--text-faint);
+    line-height:1.6;
+  }
+  .about-ref strong { color:var(--text-dim); }
+
+  .bio-tagline {
+    display:flex; align-items:center; gap:10px;
+    margin-bottom:16px;
+  }
+  .bio-logo { width:44px; height:44px; border-radius:10px; object-fit:cover; border:1px solid rgba(126,184,212,0.25); }
+  .bio-name { font-size:15px; font-weight:700; color:var(--silver); }
+  .bio-sub { font-family:'Noto Naskh Arabic',serif; font-size:14px; color:var(--text-faint); direction:rtl; }
+
+  /* ════ FOOTER ════ */
+  footer {
+    position:relative; z-index:1;
+    padding:28px 32px;
+    border-top:1px solid var(--border);
+    display:flex; align-items:center; justify-content:space-between;
+    flex-wrap:wrap; gap:12px;
+  }
+
+  .footer-logo { display:flex; align-items:center; gap:8px; }
+  .footer-logo-img { width:28px; height:28px; border-radius:6px; object-fit:cover; }
+  .footer-logo-text { font-size:12px; color:var(--text-faint); }
+
+  .footer-ref { font-size:11px; color:var(--text-faint); text-align:center; line-height:1.6; }
+  .footer-ref strong { color:var(--text-dim); }
+
+  .footer-copy { font-size:11px; color:var(--text-faint); }
+
+  /* ════ RESPONSIVE ════ */
+  @media (max-width:768px) {
+    .about-inner { grid-template-columns:1fr; }
+    .stat-item { padding:8px 16px; }
+    nav { padding:0 16px; }
+    .section { padding:48px 16px; }
+    .hero { padding:90px 16px 60px; }
+    .surah-grid { grid-template-columns:repeat(auto-fill,minmax(160px,1fr)); }
+  }
+</style>
+</head>
+<body>
+<div class="bg-layer"></div>
+
+<!-- NAV -->
+<nav>
+  <a class="nav-logo" href="#">
+    <img class="nav-logo-img" src="assets/logo_aqcku.jpg" alt="AQCKU"
+         onerror="this.style.display='none'">
+    <div>
+      <div class="nav-logo-text">AQCKU</div>
+      <div class="nav-logo-sub" id="nav-sub-text">Bacalah dengan Cinta</div>
+    </div>
+  </a>
+  <div style="display:flex;align-items:center;gap:4px">
+    <a class="nav-link" href="#navigator" id="nav-link-navigator">📖 Navigasi</a>
+    <a class="nav-link" href="#about" id="nav-link-about">ℹ️ Tentang</a>
+    <div class="nav-lang">
+      <button class="lang-btn my active" onclick="setLang('my')">🇲🇾 BM</button>
+      <button class="lang-btn en" onclick="setLang('en')">🇬🇧 EN</button>
+    </div>
+  </div>
+</nav>
+
+<!-- ════ HERO ════ -->
+<section class="hero">
+
+  <div class="hero-ring">
+    <img class="hero-logo" src="assets/logo_aqcku.jpg" alt="AQCKU Logo"
+         onerror="this.outerHTML='<div style=\'width:130px;height:130px;border-radius:50%;background:rgba(201,168,76,0.1);border:2px solid rgba(201,168,76,0.3);display:flex;align-items:center;justify-content:center;font-size:48px\'>📖</div>'">
+  </div>
+
+  <div class="hero-arabic my-text">اقرأ بحب</div>
+  <div class="hero-arabic en-text" style="display:none">اقرأ بحب</div>
+
+  <div class="hero-tagline my-text">Bacalah dengan Cinta &nbsp;·&nbsp; Recite with Love</div>
+  <div class="hero-tagline en-text" style="display:none">Recite with Love &nbsp;·&nbsp; Bacalah dengan Cinta</div>
+
+  <h1 class="hero-title my-text">Sinopsis Al-Quran</h1>
+  <h1 class="hero-title hero-title-en en-text" style="display:none">Quran Synopsis</h1>
+
+  <p class="hero-desc my-text">
+    Ayat demi Ayat · Halaman demi Halaman · Surah demi Surah · Juzuk demi Juzuk<br>
+    <span style="font-size:14px;opacity:0.7">Berdasarkan Tafsir Ibn Kathīr — Darussalam</span>
+  </p>
+  <p class="hero-desc en-text" style="display:none">
+    Verse by Verse · Page by Page · Surah by Surah · Juz by Juz<br>
+    <span style="font-size:14px;opacity:0.7">Based on Tafsir Ibn Kathīr — Darussalam</span>
+  </p>
+
+  <div class="hero-cta">
+    <a class="cta-btn cta-my" href="my/surah/01-al-fatihah/halaman-01.html">
+      🇲🇾 <span class="my-text">Baca dalam Bahasa Melayu</span><span class="en-text" style="display:none">Read in Malay</span>
+    </a>
+    <a class="cta-btn cta-en" href="en/surah/01-al-fatihah/halaman-01.html">
+      🇬🇧 <span class="my-text">Read in English</span><span class="en-text" style="display:none">Read in English</span>
+    </a>
+  </div>
+
+  <div class="scroll-hint">
+    <span class="my-text">Terokai</span>
+    <span class="en-text" style="display:none">Explore</span>
+    <span>↓</span>
+  </div>
+
+</section>
+
+<!-- STATS BAR -->
+<div class="stats-bar">
+  <div class="stat-item">
+    <div class="stat-num">114</div>
+    <div class="stat-label my-text">Surah</div>
+    <div class="stat-label en-text" style="display:none">Surahs</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">30</div>
+    <div class="stat-label my-text">Juzuk</div>
+    <div class="stat-label en-text" style="display:none">Juz</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">604</div>
+    <div class="stat-label my-text">Halaman</div>
+    <div class="stat-label en-text" style="display:none">Pages</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">6,236</div>
+    <div class="stat-label my-text">Ayat</div>
+    <div class="stat-label en-text" style="display:none">Verses</div>
+  </div>
+  <div class="stat-item">
+    <div class="stat-num">2</div>
+    <div class="stat-label my-text">Bahasa</div>
+    <div class="stat-label en-text" style="display:none">Languages</div>
+  </div>
+</div>
+
+<!-- ════ NAVIGATOR ════ -->
+<section class="section" id="navigator">
+  <div class="section-header">
+    <div class="section-label my-text">Navigasi</div>
+    <div class="section-label en-text" style="display:none">Navigation</div>
+    <div class="section-title my-text">Pilih Surah atau Juzuk</div>
+    <div class="section-title en-text" style="display:none">Browse by Surah or Juz</div>
+    <div class="section-sub my-text">Klik untuk mula membaca sinopsis</div>
+    <div class="section-sub en-text" style="display:none">Click to start reading the synopsis</div>
+  </div>
+
+  <div class="nav-mode">
+    <button class="mode-btn active" onclick="showMode('surah',this)" id="btn-surah">
+      📖 <span class="my-text">Ikut Surah</span><span class="en-text" style="display:none">By Surah</span>
+    </button>
+    <button class="mode-btn" onclick="showMode('juzuk',this)" id="btn-juzuk">
+      🗂 <span class="my-text">Ikut Juzuk</span><span class="en-text" style="display:none">By Juz</span>
+    </button>
+  </div>
+
+  <!-- SURAH LIST -->
+  <div id="view-surah">
+    <div class="surah-grid">
+
+      <!-- Surah 1 — AVAILABLE -->
+      <a class="surah-card" href="my/surah/01-al-fatihah/halaman-01.html" id="sc-1">
+        <div class="surah-num">1</div>
+        <div class="surah-info">
+          <div class="surah-name-ar">الْفَاتِحَة</div>
+          <div class="surah-name-rumi">Al-Fatihah</div>
+          <div class="surah-meta-text my-text">Makkiyyah · 7 Ayat · Hlm 1</div>
+          <div class="surah-meta-text en-text" style="display:none">Makki · 7 Verses · Pg 1</div>
+        </div>
+        <div class="surah-status"></div>
+      </a>
+
+      <!-- Surah 2 — COMING SOON -->
+      <div class="surah-card" style="opacity:.45;cursor:default">
+        <div class="surah-num" style="color:var(--text-faint);border-color:var(--border)">2</div>
+        <div class="surah-info">
+          <div class="surah-name-ar">الْبَقَرَة</div>
+          <div class="surah-name-rumi">Al-Baqarah</div>
+          <div class="surah-meta-text my-text">Madaniyyah · 286 Ayat · Hlm 2–49</div>
+          <div class="surah-meta-text en-text" style="display:none">Madani · 286 Verses · Pg 2–49</div>
+        </div>
+        <div class="surah-status pending"></div>
+      </div>
+
+      <!-- Placeholder cards -->
+      <div class="surah-card" style="opacity:.25;cursor:default">
+        <div class="surah-num" style="color:var(--text-faint);border-color:var(--border)">3</div>
+        <div class="surah-info">
+          <div class="surah-name-ar">آل عِمْرَان</div>
+          <div class="surah-name-rumi">Ali 'Imran</div>
+          <div class="surah-meta-text">200 <span class="my-text">Ayat</span><span class="en-text" style="display:none">Verses</span></div>
+        </div>
+        <div class="surah-status pending"></div>
+      </div>
+
+      <div class="surah-card" style="opacity:.25;cursor:default">
+        <div class="surah-num" style="color:var(--text-faint);border-color:var(--border)">4</div>
+        <div class="surah-info">
+          <div class="surah-name-ar">النِّسَاء</div>
+          <div class="surah-name-rumi">An-Nisa'</div>
+          <div class="surah-meta-text">176 <span class="my-text">Ayat</span><span class="en-text" style="display:none">Verses</span></div>
+        </div>
+        <div class="surah-status pending"></div>
+      </div>
+
+      <div class="surah-card" style="opacity:.25;cursor:default">
+        <div class="surah-num" style="color:var(--text-faint);border-color:var(--border)">5</div>
+        <div class="surah-info">
+          <div class="surah-name-ar">الْمَائِدَة</div>
+          <div class="surah-name-rumi">Al-Ma'idah</div>
+          <div class="surah-meta-text">120 <span class="my-text">Ayat</span><span class="en-text" style="display:none">Verses</span></div>
+        </div>
+        <div class="surah-status pending"></div>
+      </div>
+
+      <!-- More coming -->
+      <div class="surah-card" style="opacity:.15;cursor:default;justify-content:center;flex-direction:column;align-items:center;gap:6px">
+        <div style="font-size:22px">＋</div>
+        <div style="font-size:11px;color:var(--text-faint);text-align:center" class="my-text">109 Surah lagi<br>akan datang</div>
+        <div style="font-size:11px;color:var(--text-faint);text-align:center" class="en-text" style="display:none">109 more Surahs<br>coming soon</div>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- JUZUK LIST -->
+  <div id="view-juzuk" style="display:none">
+    <div class="juzuk-grid">
+
+      <!-- Juzuk 1 — AVAILABLE -->
+      <a class="juzuk-card active" href="my/surah/01-al-fatihah/halaman-01.html">
+        <div class="juzuk-num">1</div>
+        <div class="juzuk-name">الم</div>
+        <div class="juzuk-pages my-text">Hlm 1 – 21</div>
+        <div class="juzuk-pages en-text" style="display:none">Pg 1 – 21</div>
+        <div class="juzuk-status"></div>
+      </a>
+
+      <!-- Juzuk 2–30 pending -->
+      <div class="juzuk-card" style="opacity:.4;cursor:default">
+        <div class="juzuk-num" style="color:var(--text-faint)">2</div>
+        <div class="juzuk-name">سَيَقُولُ</div>
+        <div class="juzuk-pages my-text">Hlm 22 – 41</div>
+        <div class="juzuk-pages en-text" style="display:none">Pg 22 – 41</div>
+        <div class="juzuk-status pending"></div>
+      </div>
+
+      <div class="juzuk-card" style="opacity:.4;cursor:default">
+        <div class="juzuk-num" style="color:var(--text-faint)">3</div>
+        <div class="juzuk-name">تِلْكَ الرُّسُلُ</div>
+        <div class="juzuk-pages my-text">Hlm 42 – 62</div>
+        <div class="juzuk-pages en-text" style="display:none">Pg 42 – 62</div>
+        <div class="juzuk-status pending"></div>
+      </div>
+
+      <div class="juzuk-card" style="opacity:.4;cursor:default">
+        <div class="juzuk-num" style="color:var(--text-faint)">4</div>
+        <div class="juzuk-name">لَنْ تَنَالُوا</div>
+        <div class="juzuk-pages my-text">Hlm 63 – 82</div>
+        <div class="juzuk-pages en-text" style="display:none">Pg 63 – 82</div>
+        <div class="juzuk-status pending"></div>
+      </div>
+
+      <div class="juzuk-card" style="opacity:.4;cursor:default">
+        <div class="juzuk-num" style="color:var(--text-faint)">5</div>
+        <div class="juzuk-name">وَالْمُحْصَنَاتُ</div>
+        <div class="juzuk-pages my-text">Hlm 83 – 102</div>
+        <div class="juzuk-pages en-text" style="display:none">Pg 83 – 102</div>
+        <div class="juzuk-status pending"></div>
+      </div>
+
+      <div class="juzuk-card" style="opacity:.2;cursor:default;align-items:center;justify-content:center">
+        <div style="font-size:18px">＋</div>
+        <div style="font-size:10px;color:var(--text-faint);margin-top:4px" class="my-text">25 Juzuk lagi</div>
+        <div style="font-size:10px;color:var(--text-faint);margin-top:4px" class="en-text" style="display:none">25 more Juz</div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════ ABOUT ════ -->
+<section class="about-section" id="about">
+  <div style="max-width:860px;margin:0 auto">
+    <div class="section-header" style="margin-bottom:32px">
+      <div class="section-label my-text">Tentang</div>
+      <div class="section-label en-text" style="display:none">About</div>
+      <div class="section-title my-text">Mengenai Projek Ini</div>
+      <div class="section-title en-text" style="display:none">About This Project</div>
+    </div>
+
+    <div class="about-inner">
+
+      <!-- PART 1 — PROJECT -->
+      <div class="about-card proj">
+        <div class="about-icon">📖</div>
+        <div class="about-card-title my-text">Tentang Sinopsis Al-Quran</div>
+        <div class="about-card-title en-text" style="display:none">About Quran Synopsis</div>
+
+        <div class="about-text my-text">
+          Siri <strong>Sinopsis Al-Quran</strong> merumuskan mesej Allah kepada hamba-Nya —
+          ayat demi ayat, halaman demi halaman, surah demi surah dan juzuk demi juzuk —
+          berdasarkan <em>Tafsir Ibn Kathīr</em> yang muktabar.
+          <br><br>
+          Objektif siri ini adalah untuk memberikan <strong>pendedahan dan kefahaman</strong>
+          kepada orang ramai tentang mesej Allah yang terkandung dalam setiap ayat Al-Quran,
+          disampaikan secara ringkas namun setia kepada sumber asal.
+        </div>
+        <div class="about-text en-text" style="display:none">
+          The <strong>Quran Synopsis</strong> series summarises Allah's message to His servants —
+          verse by verse, page by page, surah by surah and juz by juz —
+          based on the authoritative <em>Tafsir Ibn Kathīr</em>.
+          <br><br>
+          The objective is to provide <strong>exposure and understanding</strong>
+          to the public about Allah's message in every verse of the Quran,
+          presented concisely yet faithful to the original source.
+        </div>
+
+        <div class="about-ref">
+          <strong class="my-text">Sumber Rujukan:</strong>
+          <strong class="en-text" style="display:none">Source Reference:</strong><br>
+          Tafsir Ibn Kathir (Abridged, 10 Volumes)<br>
+          Darussalam — Ed. Safiur-Rahman al-Mubarakpuri
+        </div>
+      </div>
+
+      <!-- PART 2 — BIO -->
+      <div class="about-card bio">
+        <div class="bio-tagline">
+          <img class="bio-logo" src="assets/logo_aqcku.jpg" alt="AQCKU"
+               onerror="this.outerHTML='<div style=\'width:44px;height:44px;border-radius:10px;background:rgba(126,184,212,0.1);border:1px solid rgba(126,184,212,0.25);display:flex;align-items:center;justify-content:center;font-size:20px\'>📖</div>'">
+          <div>
+            <div class="bio-name">AQCKU</div>
+            <div class="bio-sub">اقرأ بحب</div>
+          </div>
+        </div>
+
+        <div class="about-card-title my-text">Bacalah dengan Cinta</div>
+        <div class="about-card-title en-text" style="display:none">Recite with Love</div>
+
+        <div class="about-text my-text">
+          Nota peribadi seorang <strong>pelajar Al-Quran seumur hidup</strong>
+          dalam memahami tafsir muktabar karya Ibn Kathīr —
+          dikongsi kepada sesiapa yang berminat.
+        </div>
+        <div class="about-text en-text" style="display:none">
+          Personal notes of a <strong>lifelong Quran student</strong>
+          in understanding the renowned tafsir of Ibn Kathīr —
+          shared with all who are interested.
+        </div>
+
+        <div class="about-quote my-text">
+          <em>Semoga bermanfaat.</em>
+        </div>
+        <div class="about-quote en-text" style="display:none">
+          <em>May it be of benefit.</em>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ════ FOOTER ════ -->
+<footer>
+  <div class="footer-logo">
+    <img class="footer-logo-img" src="assets/logo_aqcku.jpg" alt="AQCKU"
+         onerror="this.outerHTML='<span style=\'font-size:20px\'>📖</span>'">
+    <div class="footer-logo-text">AQCKU &nbsp;·&nbsp; <span class="my-text">Bacalah dengan Cinta</span><span class="en-text" style="display:none">Recite with Love</span></div>
+  </div>
+
+  <div class="footer-ref">
+    <strong class="my-text">Sumber:</strong>
+    <strong class="en-text" style="display:none">Source:</strong>
+    Tafsir Ibn Kathir (Abridged), Darussalam &nbsp;·&nbsp;
+    Audio: Mishary Rashid Al-Afasy, EveryAyah.com
+  </div>
+
+  <div class="footer-copy">
+    <span class="my-text">Dikongsi dengan ikhlas</span>
+    <span class="en-text" style="display:none">Shared sincerely</span>
+    &nbsp;·&nbsp; AQCKU
+  </div>
+</footer>
+
+<script>
+  // ── LANGUAGE ──
+  let lang = 'my';
+
+  function setLang(l) {
+    lang = l;
+    document.querySelectorAll('.lang-btn').forEach(b => b.classList.remove('active'));
+    document.querySelector(`.lang-btn.${l}`).classList.add('active');
+    document.querySelectorAll('.my-text').forEach(e => e.style.display = l==='my' ? '' : 'none');
+    document.querySelectorAll('.en-text').forEach(e => e.style.display = l==='en' ? '' : 'none');
+    document.documentElement.lang = l==='my' ? 'ms' : 'en';
+
+    // Update surah card links for language
+    const sc1 = document.getElementById('sc-1');
+    if (sc1) {
+      sc1.href = l === 'my'
+        ? 'my/surah/01-al-fatihah/halaman-01.html'
+        : 'en/surah/01-al-fatihah/halaman-01.html';
+    }
+
+    // Update nav sub
+    document.getElementById('nav-sub-text').textContent =
+      l === 'my' ? 'Bacalah dengan Cinta' : 'Recite with Love';
+  }
+
+  // ── NAVIGATOR MODE ──
+  function showMode(mode, btn) {
+    document.querySelectorAll('.mode-btn').forEach(b => b.classList.remove('active'));
+    btn.classList.add('active');
+    document.getElementById('view-surah').style.display = mode==='surah' ? 'block' : 'none';
+    document.getElementById('view-juzuk').style.display = mode==='juzuk' ? 'grid' : 'none';
+  }
+
+  // ── SMOOTH NAV ACTIVE ──
+  const sections = ['navigator','about'];
+  const navLinks = document.querySelectorAll('.nav-link');
+
+  const sio = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting) {
+        navLinks.forEach(l => l.style.color = '');
+        const id = e.target.id;
+        const link = document.getElementById(`nav-link-${id}`);
+        if (link) link.style.color = 'var(--gold)';
+      }
+    });
+  }, { threshold: 0.4 });
+
+  sections.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) sio.observe(el);
+  });
+</script>
+</body>
+</html>
